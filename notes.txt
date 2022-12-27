@@ -1,0 +1,8 @@
+exit(0) not woriking in UNIX
+Unecessary edit_data function(untcaked usage)
+whole sem data print librery is needed.(currently working)
+new algotihm (working)
+need to code delete_stdudent_data(in system.h)
+need rework on search_student_data
+need to code modify_student_data
+need to add year in student_data
