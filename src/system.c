@@ -52,4 +52,11 @@ bool mt_file(char s[]) // checks if the file is empty or not
     else
         return false;
 }
-
+void concat(char a[],char b[],char c[])
+{
+	char path[]=".dat";
+	strcat(b,c);
+	strcat(b,path);
+	strcat("files/",b);
+	strcpy(a,b);
+}

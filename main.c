@@ -24,7 +24,7 @@ int main()
         case 2:
             // student();
             break;
-        case 3:
+        case 0:
             exit(0);
         }
     }

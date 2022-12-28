@@ -27,7 +27,7 @@ void create_login()
 
 test login()
 {
-    if (mt_file("files/user.dat")) // cheking if there is data or not;
+    if (mt_file("files/user.dat")|| fopen("files/user.dat","r")==NULL) // cheking if there is data or not;
     {
         int n;
         printf("\nNo Admin Found.");

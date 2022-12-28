@@ -57,5 +57,5 @@ void delete_student_data();//deletes student data by reg.no
 void modify_student_data();//modifies student data by reg.no
 void manage_data();//admin func
 void create_data();//manage_data func
-
+void concat(char [],char [],char []);//accepts stream and sem, returns files/streamsem.dat
 #endif
