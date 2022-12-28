@@ -45,12 +45,16 @@ void c_printf(char s[])
 bool mt_file(char s[]) // checks if the file is empty or not
 {
     FILE *fp;
+    if(fopen(s,"r")==NULL)
+        return true;
+    else {
     fp = fopen(s, "r");
     fseek(fp, 0, 2);
     if (ftell(fp) == 0)
         return true;
     else
         return false;
+    }
 }
 void concat(char a[],char b[],char c[])
 {

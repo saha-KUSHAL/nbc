@@ -14,7 +14,7 @@ void create_login()
     {
         fp = fopen("files/user.dat", "a");
     }
-    printf("\nEnter User Name:");
+    printf("Enter User Name:");
     fflush(stdin);
     fgets(data->id, sizeof(data->id), stdin);
     printf("\nCreate a Password:");
@@ -27,7 +27,7 @@ void create_login()
 
 test login()
 {
-    if (mt_file("files/user.dat")|| fopen("files/user.dat","r")==NULL) // cheking if there is data or not;
+    if (mt_file("files/user.dat")) // cheking if there is data or not;
     {
         int n;
         printf("\nNo Admin Found.");
@@ -35,6 +35,7 @@ test login()
         printf("\nPress 1 to create an admin account.\nPress any key to go back.\n>");
         if (scanf("%d", &n) == 1)
         {
+            fflush(stdin);
             create_login();
             return pass;
         }
