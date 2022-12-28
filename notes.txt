@@ -1,5 +1,5 @@
-exit(0) not woriking in UNIX
-Unecessary edit_data function(untcaked usage)
+exit(0) not woriking in UNIX[done]
+Unecessary edit_data function(untcaked usage)[done]
 whole sem data print librery is needed.(currently working)
 new algotihm (working)
 need to code delete_stdudent_data(in system.h)

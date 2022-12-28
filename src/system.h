@@ -37,6 +37,7 @@ typedef struct student_data
     char sem[3];
 	int marks;
 	char grade;
+    char year[4];
 } student_data;
 
 void black(); // text colors
