@@ -24,7 +24,7 @@ void create_data()
         fgets(data->sem,sizeof(data->sem),stdin);
 		printf("Enter Admission Year:");
         fflush(stdin);
-        fgets(data->sem,sizeof(data->year),stdin);
+        fgets(data->year,sizeof(data->year),stdin);
 		printf("How many written subjects?");
 		fflush(stdin);
 		scanf("%hd",&n);
