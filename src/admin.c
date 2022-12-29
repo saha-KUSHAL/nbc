@@ -22,7 +22,7 @@ void admin()
     switch (ch)
     {
     case 1:
-      view_data();
+      view_data();//view_data.c
       break;
     case 2:
       manage_data();
