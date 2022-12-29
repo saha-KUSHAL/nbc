@@ -17,14 +17,14 @@ void view_data()
         switch (ch)
         {
         case 1:
-            stream();
+            stream();//view_data.c
             break;
         case 2:
 	    yellow();
 	    printf("Enter Reg.No\n");
 	    fflush(stdin);
 	    scanf("%ld",&regno);
-            search_student_data(regno);
+            search_student_data(regno);//search_sudent_data.c
 	    reset();
             break;
         case 0:break;
