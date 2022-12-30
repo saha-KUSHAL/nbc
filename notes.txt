@@ -1,7 +1,7 @@
 exit(0) not woriking in UNIX[done]
 Unecessary edit_data function(untcaked usage)[done]
 perticuler semster data diplay module(in view_data.c -> stream())[Done]
-need to code delete_stdudent_data(in system.h)
 need rework on search_student_data[Done]
+need to add year in student_data[done]
+need to code delete_stdudent_data(in system.h)
 need to code modify_student_data
-need to add year in student_data
