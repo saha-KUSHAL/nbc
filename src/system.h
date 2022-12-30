@@ -36,9 +36,14 @@ typedef struct student_data
     char stream[5];
     char sem[3];
     char year[4];
-	int marks;
-	char grade;
+    int marks;
+    char grade;
 } student_data;
+
+typedef struct stream_list
+{
+    char path[10];
+} stream_list;
 
 void black(); // text colors
 void red();
@@ -51,12 +56,12 @@ void white();
 void reset();
 
 void edit_data();
-void view_data();//admin func
-void stream();//prints whole sem data
-void search_student_data();//prints student data by reg.no
-void delete_student_data();//deletes student data by reg.no
-void modify_student_data();//modifies student data by reg.no
-void manage_data();//admin func
-void create_data();//manage_data func
-void concat(char [],char [],char []);//accepts stream and sem, returns files/streamsem.dat
+void view_data();                    // admin func
+void stream();                       // prints whole sem data
+void search_student_data();          // prints student data by reg.no
+void delete_student_data();          // deletes student data by reg.no
+void modify_student_data();          // modifies student data by reg.no
+void manage_data();                  // admin func
+void create_data();                  // manage_data func
+void concat(char[], char[], char[]); // accepts stream and sem, returns files/streamsem.dat
 #endif

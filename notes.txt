@@ -1,7 +1,6 @@
 exit(0) not woriking in UNIX[done]
 Unecessary edit_data function(untcaked usage)[done]
-whole sem data print librery is needed.(currently working)
-new algotihm (working)
+perticuler semster data diplay module(in view_data.c -> stream())[working]
 need to code delete_stdudent_data(in system.h)
 need rework on search_student_data
 need to code modify_student_data
