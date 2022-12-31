@@ -2,8 +2,8 @@
 
 void admin()
 {
-  
-  while (login())
+  test ch = login();
+  while (ch)
   {
     int ch;
     printf("\n");

@@ -1,44 +1,40 @@
 #include "system.h"
 
 void create_login()
-{
-
-    details *data; // pointer variable of details structure
-    data = (details *)malloc(sizeof(details));
+{   
     FILE *fp;
-    if (mt_file("files/user.dat"))
+    if (mt_file("files/user.txt") == 1)
+        fp = fopen("files/user.bin", "w");
+    else
+        fp = fopen("files/user.bin", "a");
+    if (fp != NULL)
     {
-        fp = fopen("files/user.dat", "w");
+        details *data = (details *)malloc(sizeof(details)); // pointer variable of details structure
+        printf("E\nnter User Name:");
+        fflush(stdin);
+        scanf("%s", data->id);
+        printf("Create a Password:");
+        fflush(stdin);
+        scanf("%s", data->password);
+        fwrite(data, sizeof(details), 1, fp);
+        free(data);
+        fclose(fp);
     }
     else
-    {
-        fp = fopen("files/user.dat", "a");
-    }
-    printf("Enter User Name:");
-    fflush(stdin);
-    fgets(data->id, sizeof(data->id), stdin);
-    printf("\nCreate a Password:");
-    fflush(stdin);
-    fgets(data->password, sizeof(data->password), stdin);
-    fwrite(data, sizeof(details), 1, fp);
-    fclose(fp);
-    free(data);
+        printf("\nError, cannot create file");
 }
 
 test login()
 {
-    if (mt_file("files/user.dat")) // cheking if there is data or not;
+    if (mt_file("files/user.bin") == 1) // cheking if there is data or not;
     {
         int n;
         printf("\nNo Admin Found.");
-        printf("\nCreate an admin:");
         printf("\nPress 1 to create an admin account.\nPress any key to go back.\n>");
-        if (scanf("%d", &n) == 1)
-        {
-            fflush(stdin);
+        scanf("%d", &n);
+        fflush(stdin);
+        if (n == 1)
             create_login();
-            return pass;
-        }
         else
             return fail; // have to chnage this.
     }
@@ -48,37 +44,40 @@ test login()
         details *data = (details *)malloc(sizeof(details));
         entered_data *input = (entered_data *)malloc(sizeof(entered_data));
 
-        FILE *fp = fopen("files/user.dat", "r");
-        while (ch != 'N')
+        FILE *fp = fopen("files/user.bin", "r");
+        while (toupper(ch) != 'N')
         {
             int flag = 0;
             printf("\nEnter User Name:");
             fflush(stdin);
-            fgets(input->id,sizeof(input->id),stdin);
-
-            printf("\nEnter Password:");
+            scanf("%s", input->id);
+            printf("Enter Password:");
             fflush(stdin);
-            fgets(input->id,sizeof(input->password),stdin);
+            scanf("%s", input->password);
             rewind(fp);
             fread(data, sizeof(details), 1, fp);
 
-            while (!feof(fp) && ch != 'N')
+            while (!feof(fp) && toupper(ch) != 'N')
             {
-                if (strcmp(input->id, data->id) == 0 && ch != 'N')
+                if (strcmp(input->id, data->id) == 0 && toupper(ch) != 'N')
                 {
                     flag = 1;
-                    if (strcmp(input->password,data->password) == 0)
+                    if (strcmp(input->password, data->password) == 0)
                     {
                         printf("\nAuthorization Sucessfull.");
                         ch = 'Y';
+                        free(input);
+                        free(data);
+                        fclose(fp);
                         return pass;
                     }
                     else
                     {
                         printf("\nPassword didn't match.");
                         printf("\nWant to retry ? (Y/n)");
-                        fflush(stdin);
-                        ch = toupper(getc(stdin));
+                        //fflush(stdin);
+                        while((getchar())!='\n');
+                        scanf("%c",&ch);
                         break;
                     }
                 }
@@ -88,8 +87,11 @@ test login()
             if (flag == 0)
             {
                 red();
-                printf("\nUser not Found.Try again...");
+                printf("\nUser not Found.Press any key to Try again...\nPress 'N' to exit");
                 reset();
+                printf("\n>");
+                while((getchar())!='\n');
+                scanf("%c",&ch);
             }
         }
         free(input);

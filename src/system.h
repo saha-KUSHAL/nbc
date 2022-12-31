@@ -12,11 +12,6 @@ typedef enum state
     fail,
     pass
 } test;
-
-void c_printf(char s[]);
-void admin();
-test login();           // login function
-bool mt_file(char s[]); // function to check a file is empty or not.
 typedef struct details
 {
     char id[10];
@@ -54,7 +49,13 @@ void purple();
 void cyan();
 void white();
 void reset();
+void c_printf(char s[]);
 
+void admin();
+void student();
+
+test login();           // login function
+int mt_file(char s[]); // function to check a file is empty or not.
 void edit_data();
 void view_data();                    // admin func
 void stream();                       // prints whole sem data

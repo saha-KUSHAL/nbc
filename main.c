@@ -15,6 +15,7 @@ int main()
         reset();
         printf("\n>");
         scanf("%d", &ch);
+        fflush(stdin);
 
         switch (ch)
         {
@@ -22,7 +23,7 @@ int main()
             admin();
             break;
         case 2:
-            // student();
+            student();
             break;
         case 0:
             exit(0);

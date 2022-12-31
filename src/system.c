@@ -42,25 +42,32 @@ void c_printf(char s[])
     int pad = (strlen(s) >= width) ? 0 : (width - strlen(s)) / 2;
     printf("%*.*s%s\n", pad, pad, " ", s);
 }
-bool mt_file(char s[]) // checks if the file is empty or not
+int mt_file(char s[]) // checks if the file is empty or not
 {
-    FILE *fp;
-    if(fopen(s,"r")==NULL)
-        return true;
-    else {
-    fp = fopen(s, "r");
-    fseek(fp, 0, 2);
-    if (ftell(fp) == 0)
-        return true;
-    else
-        return false;
+    long int size = 0;
+    if (fopen(s, "r") != NULL)
+    {
+        FILE *fp;
+        fp=fopen(s, "r");
+        rewind(fp);
+        while (!feof(fp))
+        {
+            fgetc(fp);
+            size++;
+        }
+        rewind(fp);
+        fclose(fp);
     }
+    if (size == 0)
+        return 1;
+    else
+        return 0;
 }
-void concat(char a[],char b[],char c[])
+void concat(char a[], char b[], char c[])
 {
-	char path[]=".dat";
-	strcat(b,c);
-	strcat(b,path);
-	strcat("files/",b);
-	strcpy(a,b);
+    char path[] = ".dat";
+    strcat(b, c);
+    strcat(b, path);
+    strcat("files/", b);
+    strcpy(a, b);
 }

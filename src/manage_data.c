@@ -15,7 +15,7 @@ void manage_data() // manage data from ADMIN
     switch (ch)
     {
         case 1:
-            create_data();//in student.c
+            create_data();//in student_data.c
             break;
         case 2: // modify_data();
             break;
