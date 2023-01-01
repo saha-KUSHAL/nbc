@@ -1,7 +1,8 @@
 # Prerequisites
-*.d
-*.save
-
+files/
+#program files
+*.dat
+*
 # Object files
 *.o
 *.ko

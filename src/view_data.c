@@ -50,13 +50,13 @@ void stream() // displays a perticuler stream data
     else
     {
         fp = fopen("files/filelist", "r");
-        stream_list *filename = (stream_list *)malloc(sizeof(stream_list));
+        char fname[30];
         rewind(fp);
-        fread(filename, sizeof(stream_list), 1, fp);
+        fread(fname,30, 1, fp);
         while (!feof(fp))
         {
-            printf("\n%s", filename->path);
-            fread(filename, sizeof(stream_list), 1, fp);
+            printf("\n%s", fname);
+            fread(fname,30, 1, fp);
         }
         int ch = 1;
         while (ch == 1)
@@ -67,10 +67,10 @@ void stream() // displays a perticuler stream data
             rewind(fp);
             while (!feof(fp) && flag == 0) // checking if user input is vaild
             {
-                if (strcmp(fname_choice, filename->path) == 0)
+                if (strcmp(fname_choice,fname) == 0)
                     flag = 1;
                 else
-                    fread(filename, sizeof(stream_list), 1, fp);
+                    fread(fname,30, 1, fp);
             }
             if (flag == 1)
                 break;
@@ -83,7 +83,6 @@ void stream() // displays a perticuler stream data
                 scanf("%d", &ch);
             }
         }
-        free(filename);
         fclose(fp);
     }
 
@@ -96,7 +95,7 @@ void stream() // displays a perticuler stream data
         fread(data, sizeof(student_data), 1, fp2);
         while (!feof(fp2))
         {
-            printf("%ld    %s    %s    %s  %s    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
+            printf("%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
             fread(data, sizeof(student_data), 1, fp2);
         }
         fclose(fp2);

@@ -45,6 +45,9 @@ void c_printf(char s[])
 int mt_file(char s[]) // checks if the file is empty or not
 {
     long int size = 0;
+    /*checking is file exists or not.if file doesn't exist then fuction will return 1 or true.
+    if file exists the measure it's size. If the file is empty then it will be 0 byte,
+    hence function will return 1 or true,else it will return 0*/
     if (fopen(s, "r") != NULL)
     {
         FILE *fp;
@@ -55,7 +58,7 @@ int mt_file(char s[]) // checks if the file is empty or not
             fgetc(fp);
             size++;
         }
-        rewind(fp);
+        rewind(fp);//to avoid mistake seek the file pointer to the start
         fclose(fp);
     }
     if (size == 0)
@@ -63,11 +66,4 @@ int mt_file(char s[]) // checks if the file is empty or not
     else
         return 0;
 }
-void concat(char a[], char b[], char c[])
-{
-    char path[] = ".dat";
-    strcat(b, c);
-    strcat(b, path);
-    strcat("files/", b);
-    strcpy(a, b);
-}
+

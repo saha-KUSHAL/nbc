@@ -17,6 +17,7 @@ void create_login()
         fflush(stdin);
         scanf("%s", data->password);
         fwrite(data, sizeof(details), 1, fp);
+        printf("Acount Created Sucessfully");
         free(data);
         fclose(fp);
     }
