@@ -10,27 +10,33 @@ void create_data() // function to store student marks by stream and semester
 	while (toupper(ch) == 'Y')
 	{
 		printf("\nEnter Student Reg no:");
-		//while ((getchar()) != '\n');
+		// while ((getchar()) != '\n');
 		scanf("%ld", &data->reg_no);
 		printf("Enter Student Name:");
-		while ((getchar()) != '\n');
-		scanf("%49[^\n]",data->name);
+		while ((getchar()) != '\n')
+			;
+		scanf("%49[^\n]", data->name);
 		printf("Enter Student Stream:");
-		while ((getchar()) != '\n');
-		scanf("%s",data->stream);
+		while ((getchar()) != '\n')
+			;
+		scanf("%s", data->stream);
 		printf("Enter Student Sem(i to x):");
-		while ((getchar()) != '\n');
-		scanf("%s",data->sem);
+		while ((getchar()) != '\n')
+			;
+		scanf("%s", data->sem);
 		printf("Enter Admission Year:");
-		while ((getchar()) != '\n');
-		scanf("%d",&data->year);
+		while ((getchar()) != '\n')
+			;
+		scanf("%d", &data->year);
 		printf("How many written subjects?");
-		while ((getchar()) != '\n');
+		while ((getchar()) != '\n')
+			;
 		scanf("%hd", &n);
 		for (i = 0; i < n; i++)
 		{
 			printf("Enter marks of subject %d:", i + 1);
-			while ((getchar()) != '\n');
+			while ((getchar()) != '\n')
+				;
 			scanf("%hd", &sub[i]);
 		}
 		int mark = 0;
@@ -53,9 +59,9 @@ void create_data() // function to store student marks by stream and semester
 		else
 			data->grade = 'F';
 
-		strcat(path,data->stream);
-		strcat(path,data->sem);
-		strcat(path,".dat");
+		strcat(path, data->stream);
+		strcat(path, data->sem);
+		strcat(path, ".dat");
 
 		if (mt_file("files/filelist.txt") == 1)
 			fp2 = fopen("files/filelist.txt", "w");
@@ -68,12 +74,13 @@ void create_data() // function to store student marks by stream and semester
 			fp = fopen(path, "a");
 
 		fwrite(data, sizeof(student_data), 1, fp);
-		fwrite(path,30, 1, fp2);
+		fwrite(path, 30, 1, fp2);
 		fclose(fp);
 		fclose(fp2);
 		free(data);
 		printf("\nDo you want to add more ?(Y/n)");
-		while ((getchar()) != '\n');
+		while ((getchar()) != '\n')
+			;
 		ch = getc(stdin);
 	}
 }
@@ -104,10 +111,10 @@ void search_student_data(long int no)
 				fread(data, sizeof(student_data), 1, fp2);
 				while (!feof(fp2) && ch == 0)
 				{
-					if (data->reg_no == no)
+					if (data->reg_no != 0 && data->reg_no == no)
 					{
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
-						printf("%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
+						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
 						ch = 1;
 					}
 					else
@@ -116,7 +123,128 @@ void search_student_data(long int no)
 				fclose(fp2);
 				free(data);
 			}
-			fread(fname,30, 1, fp);
+			fread(fname, 30, 1, fp);
+		}
+		if (ch == 0)
+			printf("\nData not available!");
+		fclose(fp);
+	}
+}
+void delete_student_data(long int no)
+{
+	// It modifes the reg no filed if found.The student data containg reg no as 0 is filtered out and
+	// doesn't displayed anywhere.It helps to keep data to recover for further use.
+	FILE *fp;
+	int ch = 0;
+	if (mt_file("files/filelist.txt"))
+	{
+		printf("\nError or File not available.");
+	}
+	else
+	{
+		char fname[30];
+		fp = fopen("files/filelist.txt", "r");
+		rewind(fp);
+		fread(fname, 30, 1, fp);
+		while (!feof(fp) && ch == 0)
+		{
+			if (mt_file(fname))
+				fread(fname, 30, 1, fp);
+			else
+			{
+				FILE *fp2 = fopen(fname, "r+");
+				student_data *data = (student_data *)malloc(sizeof(student_data));
+				rewind(fp2);
+				fread(data, sizeof(student_data), 1, fp2);
+				while (!feof(fp2) && ch == 0)
+				{
+					if (data->reg_no != 0 && data->reg_no == no)
+					{
+						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
+						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
+						while((getchar())!='\n');
+						red();
+						printf("\nPress 1 to confirm:");
+						reset();
+						scanf("%d",&ch);
+						if(ch==1)
+						{
+							data->reg_no = 0;
+							fseek(fp2, -(sizeof(student_data)), 1);
+							fwrite(data, sizeof(student_data), 1, fp2);
+							green();
+							printf("\nData deleted sucessfully.");
+							reset();
+						}
+						ch = 1;
+					}
+					else
+						fread(data, sizeof(student_data), 1, fp2);
+				}
+				fclose(fp2);
+				free(data);
+			}
+			fread(fname, 30, 1, fp);
+		}
+		if (ch == 0)
+			printf("\nData not available!");
+		fclose(fp);
+	}
+}
+
+void modify_student_data(long int no)
+{
+	FILE *fp;
+	int ch = 0;
+	if (mt_file("files/filelist.txt"))
+	{
+		printf("\nError or File not available.");
+	}
+	else
+	{
+		char fname[30];
+		fp = fopen("files/filelist.txt", "r");
+		rewind(fp);
+		fread(fname, 30, 1, fp);
+		while (!feof(fp) && ch == 0)
+		{
+			if (mt_file(fname))
+				fread(fname, 30, 1, fp);
+			else
+			{
+				FILE *fp2 = fopen(fname, "r+");
+				student_data *data = (student_data *)malloc(sizeof(student_data));
+				rewind(fp2);
+				fread(data, sizeof(student_data), 1, fp2);
+				while (!feof(fp2) && ch == 0)
+				{
+					if (data->reg_no != 0 && data->reg_no == no)
+					{
+						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
+						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
+						while((getchar())!='\n');
+						red();
+						printf("\nPress 1 to confirm:");
+						reset();
+						scanf("%d",&ch);
+						if(ch==1)
+						{
+							data->reg_no = 0;
+							fseek(fp2, -(sizeof(student_data)), 1);
+							fwrite(data, sizeof(student_data), 1, fp2);
+							green();
+							printf("\nData deleted sucessfully.");
+							reset();
+						}
+						ch = 1;
+					}
+					else
+						fread(data, sizeof(student_data), 1, fp2);
+				}
+				fclose(fp2);
+				free(data);
+			}
+			fread(fname, 30, 1, fp);
 		}
 		if (ch == 0)
 			printf("\nData not available!");

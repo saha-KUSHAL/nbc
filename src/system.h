@@ -1,3 +1,9 @@
+#ifdef _WIN32
+#define CLEAR "cls"
+#else
+#define CLEAR "clear"
+#endif
+
 #ifndef _SYSTEM_H_
 #define _SYSTEM_H_
 
@@ -54,9 +60,10 @@ int mt_file(char s[]); // function to check a file is empty or not.
 void edit_data();
 void view_data();                    // admin func
 void stream();                       // prints whole sem data
-void search_student_data();          // prints student data by reg.no
-void delete_student_data();          // deletes student data by reg.no
-void modify_student_data();          // modifies student data by reg.no
+void search_student_data(long int);          // prints student data by reg.no
+void delete_student_data(long int);          // deletes student data by reg.no
+void modify_student_data(long int);          // modifies student data by reg.no
 void manage_data();                  // admin func
 void create_data();                  // manage_data func
+
 #endif
