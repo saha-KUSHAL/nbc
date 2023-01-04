@@ -95,7 +95,7 @@ void stream() // displays a perticuler stream data
         fread(data, sizeof(student_data), 1, fp2);
         while (!feof(fp2))
         {
-            printf("%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
+            printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
             fread(data, sizeof(student_data), 1, fp2);
         }
         fclose(fp2);

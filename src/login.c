@@ -1,7 +1,7 @@
 #include "system.h"
 
 void create_login()
-{   
+{
     FILE *fp;
     if (mt_file("files/user.txt") == 1)
         fp = fopen("files/user.bin", "w");
@@ -17,6 +17,7 @@ void create_login()
         fflush(stdin);
         scanf("%s", data->password);
         fwrite(data, sizeof(details), 1, fp);
+        system(CLEAR);
         printf("Acount Created Sucessfully");
         free(data);
         fclose(fp);
@@ -65,6 +66,7 @@ test login()
                     flag = 1;
                     if (strcmp(input->password, data->password) == 0)
                     {
+                        system(CLEAR);
                         printf("\nAuthorization Sucessfull.");
                         ch = 'Y';
                         free(input);
@@ -76,9 +78,10 @@ test login()
                     {
                         printf("\nPassword didn't match.");
                         printf("\nWant to retry ? (Y/n)");
-                        //fflush(stdin);
-                        while((getchar())!='\n');
-                        scanf("%c",&ch);
+                        // fflush(stdin);
+                        while ((getchar()) != '\n')
+                            ;
+                        scanf("%c", &ch);
                         break;
                     }
                 }
@@ -91,8 +94,9 @@ test login()
                 printf("\nUser not Found.Press any key to Try again...\nPress 'N' to exit");
                 reset();
                 printf("\n>");
-                while((getchar())!='\n');
-                scanf("%c",&ch);
+                while ((getchar()) != '\n')
+                    ;
+                scanf("%c", &ch);
             }
         }
         free(input);
