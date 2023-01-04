@@ -10,7 +10,7 @@ int main()
         c_printf("Login as:");
         yellow();
         printf("\n----------\t\t\t------------\t\t\t---------");
-        printf("\n|(1)admin|\t\t\t|(2)student|\t\t\t|(0)Exit|");
+        printf("\n|(1)ADMIN|\t\t\t|(2)STUDENT|\t\t\t|(0)EXIT|");
         printf("\n----------\t\t\t------------\t\t\t---------");
         reset();
         printf("\n>");
