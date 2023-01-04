@@ -6,7 +6,7 @@ void admin()
   while (ch)
   {
     int ch;
-    printf("\n");
+    system(CLEAR);
     red();
     c_printf("--ADMIN PANEL--");
     green();

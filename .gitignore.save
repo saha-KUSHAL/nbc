@@ -1,7 +1,7 @@
 # Prerequisites
-files/
-#program files
-*.dat
+*.d
+*.bkp
+
 # Object files
 *.o
 *.ko
@@ -51,7 +51,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-#drawio backup files
-*.bkp
+
 .vscode/
 /.metadata/

@@ -67,7 +67,6 @@ test login()
                     if (strcmp(input->password, data->password) == 0)
                     {
                         system(CLEAR);
-                        printf("\nAuthorization Sucessfull.");
                         ch = 'Y';
                         free(input);
                         free(data);
