@@ -22,6 +22,7 @@ void view_data()
         case 2:
             yellow();
             printf("Enter Reg.No\n");
+            reset();
             fflush(stdin);
             scanf("%ld", &regno);
             search_student_data(regno); // search_sudent_data.c

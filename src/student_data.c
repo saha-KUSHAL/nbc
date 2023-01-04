@@ -28,6 +28,7 @@ void create_data() // function to store student marks by stream and semester
 		while ((getchar()) != '\n')
 			;
 		scanf("%d", &data->year);
+		int mark = 0;
 		printf("How many written subjects?");
 		while ((getchar()) != '\n')
 			;
@@ -39,7 +40,6 @@ void create_data() // function to store student marks by stream and semester
 				;
 			scanf("%hd", &sub[i]);
 		}
-		int mark = 0;
 		for (i = 0; i < n; i++)
 			mark += sub[i];
 		data->marks = mark;
@@ -162,12 +162,13 @@ void delete_student_data(long int no)
 					{
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
 						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
-						while((getchar())!='\n');
+						while ((getchar()) != '\n')
+							;
 						red();
 						printf("\nPress 1 to confirm:");
 						reset();
-						scanf("%d",&ch);
-						if(ch==1)
+						scanf("%d", &ch);
+						if (ch == 1)
 						{
 							data->reg_no = 0;
 							fseek(fp2, -(sizeof(student_data)), 1);
@@ -222,18 +223,101 @@ void modify_student_data(long int no)
 					{
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
 						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
-						while((getchar())!='\n');
+						while ((getchar()) != '\n')
+							;
 						red();
 						printf("\nPress 1 to confirm:");
 						reset();
-						scanf("%d",&ch);
-						if(ch==1)
+						scanf("%d", &ch);
+						if (ch == 1)
 						{
-							data->reg_no = 0;
+							int n=1;
+							while (n!=0)
+							{
+								printf("\nEnter which data you want to modify");
+								printf("\n1.Name  2.Stream  3.Semester  4.Year  5.Enter marks");
+								printf("\nEnter 0 to go back.");
+								scanf("%d", &n);
+								switch (n)
+								{
+								case 1:
+									printf("Enter Student Name:");
+									while ((getchar()) != '\n')
+										;
+									scanf("%49[^\n]", data->name);
+									break;
+								case 2:
+									printf("Enter Student Stream:");
+									while ((getchar()) != '\n')
+										;
+									scanf("%s", data->stream);
+									break;
+								case 3:
+									printf("Enter Student Semseter:");
+									while ((getchar()) != '\n')
+										;
+									scanf("%s", data->sem);
+									break;
+								case 4:
+									printf("Enter Student Year:");
+									while ((getchar()) != '\n')
+										;
+									scanf("%d", &data->year);
+									break;
+								case 5:
+								{
+									short int mark = 0,i,n,sub[10];
+									printf("How many written subjects?");
+									while ((getchar()) != '\n')
+										;
+									scanf("%hd", &n);
+									for (i = 0; i < n; i++)
+									{
+										printf("Enter marks of subject %d:", i + 1);
+										while ((getchar()) != '\n')
+											;
+										scanf("%hd", &sub[i]);
+									}
+									for (i = 0; i < n; i++)
+										mark += sub[i];
+									data->marks = mark;
+									int tmarks = (mark / n);
+									data->marks = mark;
+									if (tmarks >= 90)
+										data->grade = 'O';
+									else if (tmarks < 90 && tmarks >= 80)
+										data->grade = 'E';
+									else if (tmarks < 80 && tmarks >= 70)
+										data->grade = 'A';
+									else if (tmarks < 70 && tmarks >= 60)
+										data->grade = 'B';
+									else if (tmarks < 60 && tmarks >= 50)
+										data->grade = 'C';
+									else if (tmarks < 50 && tmarks >= 40)
+										data->grade = 'D';
+									else
+										data->grade = 'F';
+								}
+								break;
+								case 0:
+									break;
+								default:
+								{
+									system(CLEAR);
+									red();
+									printf("Wrong input!");
+									reset();
+								}
+								}
+								system(CLEAR);
+								green();
+								printf("\nSaved");
+								reset();
+							}
 							fseek(fp2, -(sizeof(student_data)), 1);
 							fwrite(data, sizeof(student_data), 1, fp2);
 							green();
-							printf("\nData deleted sucessfully.");
+							printf("\nData Modified sucessfully.");
 							reset();
 						}
 						ch = 1;
