@@ -1,3 +1,13 @@
+**0.1.0**
+```
+1.UI Chnages
+2.Algorithm Changes
+3.Student Interface added
+4.Request Feature added
+5.Added contributers
+6.some bug fixes
+7.First Alpha release
+```
 **0.0.2** 
 
 [`commmit 4`](https://github.com/saha-KUSHAL/nbc/commit/5865f710a8cbf6b2bbc85b47628c9e6429bbd88f)
