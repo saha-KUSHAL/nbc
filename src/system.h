@@ -41,6 +41,12 @@ typedef struct student_data
     char grade;
 } student_data;
 
+typedef struct request_data
+{
+    char reqstr[1000];
+    long int regno;
+}req_data;
+
 void black(); // text colors
 void red();
 void green();
@@ -65,5 +71,5 @@ void delete_student_data(long int);          // deletes student data by reg.no
 void modify_student_data(long int);          // modifies student data by reg.no
 void manage_data();                  // admin func
 void create_data();                  // manage_data func
-
+void add_request();
 #endif
