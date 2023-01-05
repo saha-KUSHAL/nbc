@@ -14,11 +14,10 @@ void add_request()
         fgets(req->reqstr, sizeof(req->reqstr), stdin);
         system(CLEAR);
         printf("\nYour request is:");
-        printf("\n\"%s\"",req->reqstr);
+        printf("\n\" %s \"",req->reqstr);
         printf("\nPress \"Y\" to confirm.");
-        while((getchar())!='\n');
         scanf("%c",&ch);
-
+        while((getchar())!='\n');
         if(mt_file("files/request.bin"))
             fp=fopen("files/request.bin","w");
         else
