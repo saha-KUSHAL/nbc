@@ -1,7 +1,9 @@
 # Prerequisites
-files/
+
 #program files
 *.dat
+*.bin
+*.txt
 # Object files
 *.o
 *.ko
