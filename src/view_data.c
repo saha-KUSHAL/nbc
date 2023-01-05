@@ -10,9 +10,9 @@ void view_data()
     {
         system(CLEAR);
         blue();
-        printf("\n----------\t\t\t------------\t\t\t-----------");
-        printf("\n|(1)By Stream|\t\t\t|(2)By Reg.No|\t\t\t|(0)Go Back|");
-        printf("\n----------\t\t\t------------\t\t\t------------");
+        printf("\n----------\t\t\t------------\t\t\t-----------------\t\t\t-----------");
+        printf("\n|(1)By Stream|\t\t\t|(2)By Reg.No|\t\t\t|(3)View Requests|\t\t\t|(0)Go Back|");
+        printf("\n----------\t\t\t------------\t\t\t-----------------\t\t\t------------");
         reset();
         printf("\n>");
         scanf("%d", &ch);
@@ -32,9 +32,11 @@ void view_data()
             search_student_data(regno); // search_sudent_data.c
             reset();
             break;
+        case 3:
+            view_request();//request.c
+            break;
         case 0:
             break;
-
         default:
             red();
             printf("\nWrong Input!");

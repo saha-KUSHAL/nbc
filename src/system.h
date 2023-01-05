@@ -72,4 +72,5 @@ void modify_student_data(long int);          // modifies student data by reg.no
 void manage_data();                  // admin func
 void create_data();                  // manage_data func
 void add_request();
+void view_request();
 #endif
