@@ -1,8 +1,8 @@
 #include "system.h"
 void add_request()
 {
-    char ch = 'N';
-    while ((toupper(ch))!='Y')
+    short int ch = 0;
+    while (ch!=1)
     {
         FILE *fp;
         req_data *req = malloc(sizeof(req_data));
@@ -19,8 +19,10 @@ void add_request()
         system(CLEAR);
         printf("\nYour request is:");
         printf("\n\" %s \"",req->reqstr);
-        printf("\nPress \"Y\" to confirm.");
-        scanf("%c",&ch);
+        green();
+        printf("\nPress 1 to confirm.");
+        reset();
+        scanf("%hd",&ch);
         while((getchar())!='\n');
         if(mt_file("files/request.bin"))
             fp=fopen("files/request.bin","w");

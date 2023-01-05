@@ -13,8 +13,8 @@ void student()
     printf("\n-----------------\t\t------------\t\t\t---------");
 	reset();
 	printf("\n>");
-	while((getchar())!='\n');
 	scanf("%hd",&ch);
+	while((getchar())!='\n');
 	switch(ch){
 		case 1:
 			long int regno;
