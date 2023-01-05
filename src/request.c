@@ -6,6 +6,10 @@ void add_request()
     {
         FILE *fp;
         req_data *req = malloc(sizeof(req_data));
+        system(CLEAR);
+        red();
+        c_printf("--Send Request--");
+        reset();
         printf("\nEnter You reg no:");
         scanf("%ld", &req->regno);
         printf("\nType your request(Within 1000 charecters)");
@@ -36,6 +40,10 @@ void view_request()
         fp=fopen("files/request.bin","r");
         rewind(fp);
         fread(req,sizeof(req_data),1,fp);
+        system(CLEAR);
+        red();
+        c_printf("--Requests--");
+        reset();
         while(!feof(fp)){
             printf("\n%ld",req->regno);
             printf("\v%s",req->reqstr);
@@ -43,7 +51,9 @@ void view_request()
         }
         fclose(fp);
         free(req);
+        green();
         printf("\nPress 1 to go back.");
+        reset();
         while((getchar())!='\n');
         scanf("%hd",&ch);
     }

@@ -10,7 +10,10 @@ void create_login()
     if (fp != NULL)
     {
         details *data = (details *)malloc(sizeof(details)); // pointer variable of details structure
-        printf("E\nnter User Name:");
+        red();
+        c_printf("--Create Account--");
+        reset();
+        printf("\nEnter User Name:");
         fflush(stdin);
         scanf("%s", data->id);
         printf("Create a Password:");
@@ -18,12 +21,16 @@ void create_login()
         scanf("%s", data->password);
         fwrite(data, sizeof(details), 1, fp);
         system(CLEAR);
-        printf("Acount Created Sucessfully");
+        green();
+        printf("Account Created Sucessfully !\n");
+        reset();
         free(data);
         fclose(fp);
     }
     else
-        printf("\nError, cannot create file");
+    red();
+        printf("\nError, cannot create file\n");
+    reset();
 }
 
 test login()
@@ -31,8 +38,12 @@ test login()
     if (mt_file("files/user.bin") == 1) // cheking if there is data or not;
     {
         int n;
+        red();
         printf("\nNo Admin Found.");
+        reset();
+        green();
         printf("\nPress 1 to create an admin account.\nPress any key to go back.\n>");
+        reset();
         scanf("%d", &n);
         fflush(stdin);
         if (n == 1)
@@ -75,11 +86,12 @@ test login()
                     }
                     else
                     {
+                        red();
                         printf("\nPassword didn't match.");
+                        blue();
                         printf("\nWant to retry ? (Y/n)");
-                        // fflush(stdin);
-                        while ((getchar()) != '\n')
-                            ;
+                        reset();
+                        while ((getchar()) != '\n');
                         scanf("%c", &ch);
                         break;
                     }
@@ -93,8 +105,7 @@ test login()
                 printf("\nUser not Found.Press any key to Try again...\nPress 'N' to exit");
                 reset();
                 printf("\n>");
-                while ((getchar()) != '\n')
-                    ;
+                while ((getchar()) != '\n');
                 scanf("%c", &ch);
             }
         }

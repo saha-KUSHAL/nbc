@@ -3,12 +3,11 @@ void view_data()
 {
     int ch = 3;
     long int regno;
-    system(CLEAR);
-    yellow();
-    c_printf("--VIEW DATA--");
     while (ch != 0)
     {
         system(CLEAR);
+        yellow();
+        c_printf("--VIEW DATA--");
         blue();
         printf("\n----------\t\t\t------------\t\t\t-----------------\t\t\t-----------");
         printf("\n|(1)By Stream|\t\t\t|(2)By Reg.No|\t\t\t|(3)View Requests|\t\t\t|(0)Go Back|");
@@ -19,11 +18,9 @@ void view_data()
         switch (ch)
         {
         case 1:
-            system(CLEAR);
             stream(); // view_data.c
             break;
         case 2:
-            system(CLEAR);
             yellow();
             printf("Enter Reg.No\n");
             reset();

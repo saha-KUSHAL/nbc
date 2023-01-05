@@ -20,8 +20,9 @@ void student()
 			long int regno;
 			system(CLEAR);
             yellow();
-            printf("Enter Reg.No\n");
+			c_printf("--View Student Details--");
             reset();
+            printf("Enter Reg.No\n");
 			printf("\n>");
             fflush(stdin);
             scanf("%ld", &regno);

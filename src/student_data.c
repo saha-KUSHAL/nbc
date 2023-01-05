@@ -7,6 +7,10 @@ void create_data() // function to store student marks by stream and semester
 	char path[30] = "files/";
 	FILE *fp, *fp2;
 	student_data *data = (student_data *)malloc(sizeof(student_data));
+	system(CLEAR);
+	yellow();
+	c_printf("--Add Student Data--");
+	reset();
 	while (toupper(ch) == 'Y')
 	{
 		printf("\nEnter Student Reg no:");
@@ -35,9 +39,8 @@ void create_data() // function to store student marks by stream and semester
 		scanf("%hd", &n);
 		for (i = 0; i < n; i++)
 		{
-			printf("Enter marks of subject %d:", i + 1);
-			while ((getchar()) != '\n')
-				;
+			printf("Enter marks of subject %d:",i + 1);
+			while ((getchar()) != '\n');
 			scanf("%hd", &sub[i]);
 		}
 		for (i = 0; i < n; i++)
@@ -113,7 +116,9 @@ void search_student_data(long int no)
 				{
 					if (data->reg_no != 0 && data->reg_no == no)
 					{
+						blue();
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
+						reset();
 						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
 						red();
 						printf("\nPress 1 to go back:");
@@ -164,7 +169,9 @@ void delete_student_data(long int no)
 				{
 					if (data->reg_no != 0 && data->reg_no == no)
 					{
+						blue();
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
+						reset();
 						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
 						while ((getchar()) != '\n');
 						red();
@@ -224,10 +231,11 @@ void modify_student_data(long int no)
 				{
 					if (data->reg_no != 0 && data->reg_no == no)
 					{
+						blue();
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
+						reset();
 						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
-						while ((getchar()) != '\n')
-							;
+						while ((getchar()) != '\n');
 						red();
 						printf("\nPress 1 to confirm:");
 						reset();
@@ -277,8 +285,7 @@ void modify_student_data(long int no)
 									for (i = 0; i < n; i++)
 									{
 										printf("Enter marks of subject %d:", i + 1);
-										while ((getchar()) != '\n')
-											;
+										while ((getchar()) != '\n');
 										scanf("%hd", &sub[i]);
 									}
 									for (i = 0; i < n; i++)
