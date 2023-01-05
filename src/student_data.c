@@ -115,7 +115,11 @@ void search_student_data(long int no)
 					{
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
 						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
-						ch = 1;
+						red();
+						printf("\nPress 1 to go back:");
+						reset();
+						while((getchar())!='\n');
+						scanf("%d", &ch);
 					}
 					else
 						fread(data, sizeof(student_data), 1, fp2);
@@ -162,8 +166,7 @@ void delete_student_data(long int no)
 					{
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
 						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
-						while ((getchar()) != '\n')
-							;
+						while ((getchar()) != '\n');
 						red();
 						printf("\nPress 1 to confirm:");
 						reset();

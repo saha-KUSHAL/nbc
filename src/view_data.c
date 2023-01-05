@@ -30,7 +30,6 @@ void view_data()
             fflush(stdin);
             scanf("%ld", &regno);
             search_student_data(regno); // search_sudent_data.c
-            reset();
             break;
         case 3:
             view_request();//request.c
