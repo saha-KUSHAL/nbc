@@ -15,27 +15,22 @@ void create_data() // function to store student marks by stream and semester
 	{
 		printf("\nEnter Student Reg no:");
 		// while ((getchar()) != '\n');
-		scanf("%ld", &data->reg_no);
+		scanf("%12ld", &data->reg_no);
 		printf("Enter Student Name:");
-		while ((getchar()) != '\n')
-			;
+		while ((getchar()) != '\n');
 		scanf("%49[^\n]", data->name);
 		printf("Enter Student Stream:");
-		while ((getchar()) != '\n')
-			;
+		while ((getchar()) != '\n');
 		scanf("%s", data->stream);
 		printf("Enter Student Sem(i to x):");
-		while ((getchar()) != '\n')
-			;
+		while ((getchar()) != '\n');
 		scanf("%s", data->sem);
 		printf("Enter Admission Year:");
-		while ((getchar()) != '\n')
-			;
+		while ((getchar()) != '\n');
 		scanf("%d", &data->year);
 		int mark = 0;
 		printf("How many written subjects?");
-		while ((getchar()) != '\n')
-			;
+		while ((getchar()) != '\n');
 		scanf("%hd", &n);
 		for (i = 0; i < n; i++)
 		{
@@ -253,34 +248,29 @@ void modify_student_data(long int no)
 								{
 								case 1:
 									printf("Enter Student Name:");
-									while ((getchar()) != '\n')
-										;
+									while ((getchar()) != '\n');
 									scanf("%49[^\n]", data->name);
 									break;
 								case 2:
 									printf("Enter Student Stream:");
-									while ((getchar()) != '\n')
-										;
+									while ((getchar()) != '\n');
 									scanf("%s", data->stream);
 									break;
 								case 3:
 									printf("Enter Student Semseter:");
-									while ((getchar()) != '\n')
-										;
+									while ((getchar()) != '\n');
 									scanf("%s", data->sem);
 									break;
 								case 4:
 									printf("Enter Student Year:");
-									while ((getchar()) != '\n')
-										;
+									while ((getchar()) != '\n');
 									scanf("%d", &data->year);
 									break;
 								case 5:
 								{
 									short int mark = 0,i,n,sub[10];
 									printf("How many written subjects?");
-									while ((getchar()) != '\n')
-										;
+									while ((getchar()) != '\n');
 									scanf("%hd", &n);
 									for (i = 0; i < n; i++)
 									{

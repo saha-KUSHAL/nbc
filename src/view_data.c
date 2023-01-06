@@ -28,7 +28,7 @@ void view_data()
             reset();
             printf("\n>");
             fflush(stdin);
-            scanf("%ld", &regno);
+            scanf("%12ld", &regno);
             search_student_data(regno); // search_sudent_data.c
             green();
             printf("\nPress any key to go back");
@@ -99,7 +99,7 @@ void stream() // displays a perticuler stream data
                     while (!feof(fp2))
                     {
                         if(data->reg_no != 0)
-                            printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
+                            printf("\n%12ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
                         fread(data, sizeof(student_data), 1, fp2);
                     }
                     fclose(fp2);

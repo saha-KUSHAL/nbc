@@ -25,7 +25,7 @@ void student()
             printf("Enter Reg.No\n");
 			printf("\n>");
             fflush(stdin);
-            scanf("%ld", &regno);
+            scanf("%12ld", &regno);
             search_student_data(regno); // search_sudent_data.c
             break;
 		}
