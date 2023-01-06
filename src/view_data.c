@@ -20,14 +20,23 @@ void view_data()
         case 1:
             stream(); // view_data.c
             break;
-        case 2:
+        case 2:{
+            char ex;
+            system(CLEAR);
             yellow();
             printf("Enter Reg.No\n");
             reset();
+            printf("\n>");
             fflush(stdin);
             scanf("%ld", &regno);
             search_student_data(regno); // search_sudent_data.c
+            green();
+            printf("\nPress any key to go back");
+            reset();
+            while((getchar())!='\n');
+            scanf("%c",&ex);
             break;
+        }
         case 3:
             view_request();//request.c
             break;
@@ -43,15 +52,24 @@ void view_data()
 void stream() // displays a perticuler stream data
 {
     FILE *fp;
-
-    if (mt_file("files/filelist.txt"))
-        printf("\nNo Data Available");
+    char ex;
+    if (mt_file("files/filelist.txt")){
+        system(CLEAR);
+        red();
+        c_printf("No Data Available");
+        green();
+        printf("\nPress any key to go back");
+        reset();
+        while((getchar())!='\n');
+        scanf("%c",&ex);
+    }
     else
     {
         fp = fopen("files/filelist.txt", "r");
         char fname[30];
         while (1)
         {
+            printf("\n");
             printf("\nStream List:");
             printf("\n-----------------");
             rewind(fp);

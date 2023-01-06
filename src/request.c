@@ -7,6 +7,7 @@ void add_request()
         FILE *fp;
         req_data *req = malloc(sizeof(req_data));
         system(CLEAR);
+        printf("\n");
         red();
         c_printf("--Send Request--");
         reset();
@@ -37,25 +38,34 @@ void view_request()
 {
     short int ch=0;
     while(ch!=1){
-        FILE *fp;
-        req_data *req=malloc(sizeof(req_data));
-        fp=fopen("files/request.bin","r");
-        rewind(fp);
-        fread(req,sizeof(req_data),1,fp);
         system(CLEAR);
-        red();
+        printf("\n");
+        purple();
         c_printf("--Requests--");
-        reset();
-        while(!feof(fp)){
-            printf("\n%ld",req->regno);
-            printf("\v%s",req->reqstr);
-            fread(req,sizeof(req_data),1,fp);
+        if(mt_file("files/request.bin")){
+            red();
+            printf("\nNo requests!");
+            reset();
         }
-        fclose(fp);
-        free(req);
+        else{   
+            FILE *fp;
+            req_data *req=malloc(sizeof(req_data));
+            fp=fopen("files/request.bin","r");
+            rewind(fp);
+            fread(req,sizeof(req_data),1,fp);
+            reset();
+            while(!feof(fp)){
+                printf("\n%ld",req->regno);
+                printf("\v%s",req->reqstr);
+                fread(req,sizeof(req_data),1,fp);
+            }
+            fclose(fp);
+            free(req);
+        }
         green();
         printf("\nPress 1 to go back.");
         reset();
+        printf("\n>");
         while((getchar())!='\n');
         scanf("%hd",&ch);
     }
