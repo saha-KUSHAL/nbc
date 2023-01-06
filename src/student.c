@@ -2,7 +2,8 @@
 void student()
 {
 	short int ch;
-	while(1)
+	test key= pass;
+	while(key)
 	{
 	system(CLEAR);
 	purple();
@@ -34,9 +35,11 @@ void student()
 			add_request();
 			break;
 		case 0: 
-			exit(0);
+			key=fail;
+			break;
 		default: 
 			printf("\nWrong input");
 		}
 	}
+	system(CLEAR);
 }

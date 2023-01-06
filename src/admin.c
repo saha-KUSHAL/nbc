@@ -2,8 +2,8 @@
 
 void admin()
 {
-  test ch = login();
-  while (ch)
+  test key = login();
+  while (key)
   {
     int ch;
     system(CLEAR);
@@ -28,10 +28,11 @@ void admin()
       manage_data();//manage_data.c
       break;
     case 3:
-      //  settings();
+      printf("\nSettings Module not found");
       break;
     case 0:
-      exit(0);
+      key=fail;
     }
   }
+  system(CLEAR);
 }
