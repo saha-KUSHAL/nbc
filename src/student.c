@@ -16,7 +16,7 @@ void student()
 	scanf("%hd",&ch);
 	while((getchar())!='\n');
 	switch(ch){
-		case 1:
+		case 1:{
 			long int regno;
 			system(CLEAR);
             yellow();
@@ -28,6 +28,7 @@ void student()
             scanf("%ld", &regno);
             search_student_data(regno); // search_sudent_data.c
             break;
+		}
 		case 2:
 			system(CLEAR);
 			add_request();
