@@ -7,5 +7,6 @@ You can contribute to this project after we publish this repo to public.
 
 ## Staus of the Repo
 
-![image](https://user-images.githubusercontent.com/99195543/210712310-599b5cef-c868-4868-bf14-dacecc9fa1d6.png)
+![image](https://user-images.githubusercontent.com/99195543/210785839-1cf1d970-0c72-4e90-a46a-ea307c9bdd42.png)
+
 
