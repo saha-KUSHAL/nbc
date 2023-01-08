@@ -7,7 +7,7 @@ void logo(){
     printf("                           / /_/_     /_/ ____/_/      /_/\n");
     blue();
     printf("                          / /  /_/_      /___/_\n");
-    printf("                         / /     /_/_       / /\n");
+    printf("                         / /     /_/_       / /       _\n");
     purple();
     printf("                        / /        / / ___ /_/______ /_/\n");
     printf("                       /_/        /_/ /___/  /______/\n\n");
@@ -31,7 +31,7 @@ void yellow()
 }
 void blue()
 {
-    printf("\033[0;34m");
+    printf("\033[0;94m");
 }
 void purple()
 {

@@ -6,6 +6,7 @@ int main()
     blue();
     c_printf("Contributors:- Kushal Saha(Lead)  Shreyangshu Saha  Subrata Mondal  Indadul Haque");
     c_printf("--------------------------------------------------------------------------------------\n");
+    reset();
     while (1)
     {
         printf("\n\n");
