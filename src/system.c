@@ -1,5 +1,18 @@
 #include "system.h"
 
+void logo(){
+    cyan();
+    printf("                             _            _____   ______\n");
+    printf("                            / /_       _ /_____/_/______/_\n");
+    printf("                           / /_/_     /_/ ____/_/      /_/\n");
+    blue();
+    printf("                          / /  /_/_      /___/_\n");
+    printf("                         / /     /_/_       / /\n");
+    purple();
+    printf("                        / /        / / ___ /_/______ /_/\n");
+    printf("                       /_/        /_/ /___/  /______/\n\n");
+    reset();
+}
 void black()
 {
     printf("\033[0;30m");

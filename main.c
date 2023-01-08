@@ -2,9 +2,7 @@
 int main()
 {
     int ch;
-    c_printf("-----------------\n");
-    c_printf("NOTHING BUT C\n");
-    c_printf("-----------------\n");
+    logo();
     blue();
     c_printf("Contributors:- Kushal Saha(Lead)  Shreyangshu Saha  Subrata Mondal  Indadul Haque");
     c_printf("--------------------------------------------------------------------------------------\n");

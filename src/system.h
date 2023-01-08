@@ -47,6 +47,7 @@ typedef struct request_data
     long int regno;
 }req_data;
 
+void logo();//logo
 void black(); // text colors
 void red();
 void green();
