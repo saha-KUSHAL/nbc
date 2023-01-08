@@ -38,8 +38,8 @@ void manage_data() // manage data from ADMIN
                     cyan();
                     printf("\nEnter the reg no:");
                     reset();
-                    while((getchar())!='\n');
                     scanf("%ld",&regno);
+                    while((getchar())!='\n');
                     modify_student_data(regno);//need to modify the code
                 }
                 break;
@@ -50,8 +50,8 @@ void manage_data() // manage data from ADMIN
                     cyan();
                     printf("\nEnter the reg no:");
                     reset();
-                    while((getchar())!='\n');
                     scanf("%ld",&regno);
+                    while((getchar())!='\n');
                     delete_student_data(regno);
                 }
                 break;

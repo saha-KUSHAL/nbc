@@ -167,18 +167,18 @@ void delete_student_data(long int no)
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
 						reset();
 						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
-						while ((getchar()) != '\n');
 						red();
 						printf("\nPress 1 to confirm:");
 						reset();
 						scanf("%d", &ch);
+						while ((getchar()) != '\n');
 						if (ch == 1)
 						{
 							data->reg_no = 0;
 							fseek(fp2, -(sizeof(student_data)), 1);
 							fwrite(data, sizeof(student_data), 1, fp2);
 							green();
-							printf("\nData deleted sucessfully.");
+							printf("\nData deleted sucessfully.\n");
 							reset();
 						}
 						ch = 1;
@@ -229,19 +229,22 @@ void modify_student_data(long int no)
 						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
 						reset();
 						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
-						while ((getchar()) != '\n');
 						red();
 						printf("\nPress 1 to confirm:");
 						reset();
 						scanf("%d", &ch);
+						while ((getchar()) != '\n');
 						if (ch == 1)
 						{
 							int n=1;
 							while (n!=0)
 							{
 								printf("\nEnter which data you want to modify");
+								blue();
 								printf("\n1.Name  2.Stream  3.Semester  4.Year  5.Enter marks");
+								red();
 								printf("\nEnter 0 to go back.");
+								reset();
 								scanf("%d", &n);
 								switch (n)
 								{
@@ -304,19 +307,19 @@ void modify_student_data(long int no)
 								{
 									system(CLEAR);
 									red();
-									printf("Wrong input!");
+									printf("Wrong input!\n");
 									reset();
 								}
 								}
 								system(CLEAR);
 								green();
-								printf("\nSaved");
+								printf("\nSaved\n");
 								reset();
 							}
 							fseek(fp2, -(sizeof(student_data)), 1);
 							fwrite(data, sizeof(student_data), 1, fp2);
 							green();
-							printf("\nData Modified sucessfully.");
+							printf("\nData Modified sucessfully.\n");
 							reset();
 						}
 						ch = 1;
@@ -330,7 +333,7 @@ void modify_student_data(long int no)
 			fread(fname, 30, 1, fp);
 		}
 		if (ch == 0)
-			printf("\nData not available!");
+			printf("\nData not available!\n");
 		fclose(fp);
 	}
 }
