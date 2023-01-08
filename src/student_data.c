@@ -4,7 +4,6 @@ void create_data() // function to store student marks by stream and semester
 {
 	short int sub[10], n, i;
 	char ch = 'Y';
-	char path[30] = "files/";
 	FILE *fp, *fp2;
 	student_data *data = (student_data *)malloc(sizeof(student_data));
 	system(CLEAR);
@@ -13,6 +12,7 @@ void create_data() // function to store student marks by stream and semester
 	reset();
 	while (toupper(ch) == 'Y')
 	{
+		char path[30] = "files/";
 		printf("\nEnter Student Reg no:");
 		// while ((getchar()) != '\n');
 		scanf("%12ld", &data->reg_no);
@@ -77,8 +77,7 @@ void create_data() // function to store student marks by stream and semester
 		fclose(fp2);
 		free(data);
 		printf("\nDo you want to add more ?(Y/n)");
-		while ((getchar()) != '\n')
-			;
+		while ((getchar()) != '\n');
 		ch = getc(stdin);
 	}
 }
