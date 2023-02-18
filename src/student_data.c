@@ -84,7 +84,7 @@ void search_student_data(long int no)
 	else
 	{
 		char fname[10];
-		fp = fopen("files/filelist.txt", "r");
+		fp = fopen("files/streamlist.txt", "r");
 		rewind(fp);
 		fread(fname, 10, 1, fp);
 		while (!feof(fp) && ch == 0)
@@ -93,7 +93,9 @@ void search_student_data(long int no)
 				fread(fname, 10, 1, fp);
 			else
 			{
-				FILE *fp2 = fopen(fname, "r");
+				char path[30]="files/";
+				add_path(path,fname);
+				FILE *fp2 = fopen(path, "r");
 				student_data *data = (student_data *)malloc(sizeof(student_data));
 				rewind(fp2);
 				fread(data, sizeof(student_data), 1, fp2);
@@ -117,7 +119,7 @@ void search_student_data(long int no)
 				fclose(fp2);
 				free(data);
 			}
-			fread(fname, 30, 1, fp);
+			fread(fname, 10, 1, fp);
 		}
 		if (ch == 0)
 			printf("\nData not available!");
@@ -130,7 +132,7 @@ void delete_student_data(long int no)
 	// doesn't displayed anywhere.It helps to keep data to recover for further use.
 	FILE *fp;
 	int ch = 0;
-	if (mt_file("files/filelist.txt"))
+	if (mt_file("files/streamlist.txt"))
 	{
 		printf("\nError or File not available.");
 	}
@@ -145,8 +147,10 @@ void delete_student_data(long int no)
 			if (mt_file(fname))
 				fread(fname, 10, 1, fp);
 			else
-			{
-				FILE *fp2 = fopen(fname, "r+");
+			{	
+				char path[30]="files/";
+				add_path(path,fname);
+				FILE *fp2 = fopen(path, "r+");
 				student_data *data = (student_data *)malloc(sizeof(student_data));
 				rewind(fp2);
 				fread(data, sizeof(student_data), 1, fp2);
@@ -180,7 +184,7 @@ void delete_student_data(long int no)
 				fclose(fp2);
 				free(data);
 			}
-			fread(fname, 30, 1, fp);
+			fread(fname, 10, 1, fp);
 		}
 		if (ch == 0)
 			printf("\nData not available!");
@@ -208,7 +212,9 @@ void modify_student_data(long int no)
 				fread(fname, 10, 1, fp);
 			else
 			{
-				FILE *fp2 = fopen(fname, "r+");
+				char path[30]="files/";
+				add_path(path,fname);
+				FILE *fp2 = fopen(path, "r+");
 				student_data *data = (student_data *)malloc(sizeof(student_data));
 				rewind(fp2);
 				fread(data, sizeof(student_data), 1, fp2);
@@ -321,7 +327,7 @@ void modify_student_data(long int no)
 				fclose(fp2);
 				free(data);
 			}
-			fread(fname, 30, 1, fp);
+			fread(fname, 10, 1, fp);
 		}
 		if (ch == 0)
 			printf("\nData not available!\n");

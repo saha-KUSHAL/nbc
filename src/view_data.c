@@ -66,10 +66,9 @@ void stream() // displays a perticuler stream data
     }
     else
     {
+        char path[30]="files/",stream[10],stmin[10];
         fp = fopen("files/streamlist.txt", "r");
-        char stream[10];
         while (1){
-            char path[30]="files/";
             printf("\n\nStream List:");
             printf("\n-----------------");
             rewind(fp);
@@ -80,14 +79,13 @@ void stream() // displays a perticuler stream data
                 fread(stream,10,1,fp);
             }
             fclose(fp);
-            int ch=0;
-            char stmin[10];
             printf("\n>");
             while ((getchar()) != '\n');
             scanf("%s",stmin); // input from the user
             add_path(path,stmin);
+            printf("\n%s",path);
             fp=fopen(path,"r");
-            if(fp=NULL)
+            if(fp==NULL)
                 printf("\nWrong Filename");
             else{
                 student_data *data=malloc(sizeof(student_data));
@@ -96,6 +94,7 @@ void stream() // displays a perticuler stream data
                 printf("\nReg no    Name    Stream    Sem    Marks    Grade    Year");
                 while(!feof(fp)){
                     printf("\n%ld  %s  %s  %s  %d  %c  %d",data->reg_no,data->name,data->stream,data->sem,data->marks,data->grade,data->year);
+                    fread(data,sizeof(student_data),1,fp);
                 }
                 free(data);
             }
