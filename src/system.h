@@ -74,4 +74,6 @@ void manage_data();                  // admin func
 void create_data();                  // manage_data func
 void add_request();
 void view_request();
+void add_path(char [],char []);
+void add_stream(char []);
 #endif

@@ -53,66 +53,51 @@ void stream() // displays a perticuler stream data
 {
     FILE *fp;
     char ex;
-    if (mt_file("files/filelist.txt")){
+    if (mt_file("files/streamlist.txt")){
         system(CLEAR);
         red();
         c_printf("No Data Available");
         green();
         printf("\nPress any key to go back");
         reset();
+        printf("\n>");
         while((getchar())!='\n');
         scanf("%c",&ex);
     }
     else
     {
-        fp = fopen("files/filelist.txt", "r");
-        char fname[30];
-        while (1)
-        {
-            printf("\n");
-            printf("\nStream List:");
+        fp = fopen("files/streamlist.txt", "r");
+        char stream[10];
+        while (1){
+            char path[30]="files/";
+            printf("\n\nStream List:");
             printf("\n-----------------");
             rewind(fp);
-            fread(fname, 30, 1, fp);
-            while (!feof(fp))
-            {
-                printf("\n%s", fname);
-                fread(fname, 30, 1, fp);
+
+            fread(stream, 10, 1, fp);
+            while (!feof(fp)){//displaing all the availabel streams
+                printf("\n%s",stream);
+                fread(stream,10,1,fp);
             }
-            int ch = 0;
-            int flag = 0;
-            char fname_choice[30];
+            fclose(fp);
+            int ch=0;
+            char stmin[10];
             printf("\n>");
             while ((getchar()) != '\n');
-            scanf("%29[^\n]", fname_choice); // input from the user
-            rewind(fp);
-            fread(fname, 30, 1, fp);
-            while (!feof(fp) && flag == 0) // checking if user input is vaild
-            {
-                if ((strcmp(fname_choice, fname)) == 0)
-                {
-                    FILE *fp2 = fopen(fname_choice, "r");
-                    student_data *data = (student_data *)malloc(sizeof(student_data));
-                    printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
-                    rewind(fp2);
-                    fread(data, sizeof(student_data), 1, fp2);
-                    while (!feof(fp2))
-                    {
-                        if(data->reg_no != 0)
-                            printf("\n%12ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
-                        fread(data, sizeof(student_data), 1, fp2);
-                    }
-                    fclose(fp2);
-                    free(data);
-                    flag = 1;
-                    // ch=0;
+            scanf("%s",stmin); // input from the user
+            add_path(path,stmin);
+            fp=fopen(path,"r");
+            if(fp=NULL)
+                printf("\nWrong Filename");
+            else{
+                student_data *data=malloc(sizeof(student_data));
+                rewind(fp);
+                fread(data,sizeof(student_data),1,fp);
+                printf("\nReg no    Name    Stream    Sem    Marks    Grade    Year");
+                while(!feof(fp)){
+                    printf("\n%ld  %s  %s  %s  %d  %c  %d",data->reg_no,data->name,data->stream,data->sem,data->marks,data->grade,data->year);
                 }
-                else
-                    fread(fname, 30, 1, fp);
-            }
-            if (flag != 1)
-            {
-                printf("\nWrong input");
+                free(data);
             }
             printf("\n\nDo you want to view again\?(Y/N)");
             char sel;

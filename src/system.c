@@ -79,4 +79,36 @@ int mt_file(char s[]) // checks if the file is empty or not
     else
         return 0;
 }
-
+void add_path(char str1[],char str[]){
+    strcat(str1,str);
+    strcat(str1,".dat");
+}
+void add_stream(char stream[]){
+    FILE *fp=fopen("files/streamlist.txt","r");
+    char exstm[10];
+    int flag=0;
+    if(fp==NULL)
+        printf("\nFile Cannot be opened.");
+    else{
+        rewind(fp);
+        fread(exstm,10,1,fp);
+        while(!feof(fp)){
+            if(strcmp(stream,exstm)==0){
+                flag=1;
+                break;
+            }
+            else
+                fread(exstm,10,1,fp);
+            
+        }
+        fclose(fp);
+    }
+    if(flag==0){
+        if(mt_file("files/streamlist.txt"))
+            fp=fopen("files/streamlist.txt","w");
+        else
+            fp=fopen("files/streamlist.txt","a");
+        fwrite(stream,10,1,fp);
+        fclose(fp);
+    }
+}

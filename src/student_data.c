@@ -4,7 +4,7 @@ void create_data() // function to store student marks by stream and semester
 {
 	short int sub[10], n, i;
 	char ch = 'Y';
-	FILE *fp, *fp2;
+	FILE *fp;
 	student_data *data = (student_data *)malloc(sizeof(student_data));
 	system(CLEAR);
 	yellow();
@@ -12,7 +12,7 @@ void create_data() // function to store student marks by stream and semester
 	reset();
 	while (toupper(ch) == 'Y')
 	{
-		char path[30] = "files/";
+		char path[31] = "files/";		
 		printf("\nEnter Student Reg no:");
 		// while ((getchar()) != '\n');
 		scanf("%12ld", &data->reg_no);
@@ -57,25 +57,16 @@ void create_data() // function to store student marks by stream and semester
 		else
 			data->grade = 'F';
 
-		strcat(path, data->stream);
-		strcat(path, data->sem);
-		strcat(path, ".dat");
-
-		if (mt_file("files/filelist.txt") == 1)
-			fp2 = fopen("files/filelist.txt", "w");
+		add_stream(data->stream);
+		add_path(path,data->stream);
+		printf("\n%s",path);
+		if(mt_file(path))
+			fp=fopen(path,"w");
 		else
-			fp2 = fopen("files/filelist.txt", "a");
-
-		if (mt_file(path))
-			fp = fopen(path, "w");
-		else
-			fp = fopen(path, "a");
-
-		fwrite(data, sizeof(student_data), 1, fp);
-		fwrite(path, 30, 1, fp2);
-		fclose(fp);
-		fclose(fp2);
+			fp=fopen(path,"a");
+		fwrite(data,sizeof(student_data),1,fp);
 		free(data);
+		fclose(fp);
 		printf("\nDo you want to add more ?(Y/n)");
 		while ((getchar()) != '\n');
 		ch = getc(stdin);
@@ -86,20 +77,20 @@ void search_student_data(long int no)
 {
 	FILE *fp;
 	int ch = 0;
-	if (mt_file("files/filelist.txt"))
+	if (mt_file("files/streamlist.txt"))
 	{
 		printf("\nError or File not available.");
 	}
 	else
 	{
-		char fname[30];
+		char fname[10];
 		fp = fopen("files/filelist.txt", "r");
 		rewind(fp);
-		fread(fname, 30, 1, fp);
+		fread(fname, 10, 1, fp);
 		while (!feof(fp) && ch == 0)
 		{
 			if (mt_file(fname))
-				fread(fname, 30, 1, fp);
+				fread(fname, 10, 1, fp);
 			else
 			{
 				FILE *fp2 = fopen(fname, "r");
@@ -146,13 +137,13 @@ void delete_student_data(long int no)
 	else
 	{
 		char fname[30];
-		fp = fopen("files/filelist.txt", "r");
+		fp = fopen("files/streamlist.txt", "r");
 		rewind(fp);
-		fread(fname, 30, 1, fp);
+		fread(fname, 10, 1, fp);
 		while (!feof(fp) && ch == 0)
 		{
 			if (mt_file(fname))
-				fread(fname, 30, 1, fp);
+				fread(fname, 10, 1, fp);
 			else
 			{
 				FILE *fp2 = fopen(fname, "r+");
@@ -201,20 +192,20 @@ void modify_student_data(long int no)
 {
 	FILE *fp;
 	int ch = 0;
-	if (mt_file("files/filelist.txt"))
+	if (mt_file("files/streamlist.txt"))
 	{
 		printf("\nError or File not available.");
 	}
 	else
 	{
-		char fname[30];
-		fp = fopen("files/filelist.txt", "r");
+		char fname[10];
+		fp = fopen("files/streamlist.txt", "r");
 		rewind(fp);
-		fread(fname, 30, 1, fp);
+		fread(fname, 10, 1, fp);
 		while (!feof(fp) && ch == 0)
 		{
 			if (mt_file(fname))
-				fread(fname, 30, 1, fp);
+				fread(fname, 10, 1, fp);
 			else
 			{
 				FILE *fp2 = fopen(fname, "r+");
