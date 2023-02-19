@@ -91,9 +91,11 @@ void stream() // displays a perticuler stream data
                 student_data *data=malloc(sizeof(student_data));
                 rewind(fp);
                 fread(data,sizeof(student_data),1,fp);
+                blue();
                 printf("\nReg no    Name    Stream    Sem    Marks    Grade    Year");
+                reset();
                 while(!feof(fp)){
-                    printf("\n%ld  %s  %s  %s  %d  %c  %d",data->reg_no,data->name,data->stream,data->sem,data->marks,data->grade,data->year);
+                    printsdata(data);
                     fread(data,sizeof(student_data),1,fp);
                 }
                 free(data);

@@ -91,7 +91,7 @@ void search_student_data(long int no){
 		fread(data, sizeof(student_data), 1, fp2);
 		while (!feof(fp2) && ch == 0)
 		{	if (data->reg_no != 0 && data->reg_no == no){
-				green();
+				blue();
 				printf("\nReg. No    \tName          \tStream\tSem\tYear\tMarks\tGrade");
 				reset();
 				printsdata(data);
@@ -141,9 +141,9 @@ void delete_student_data(long int no)
 					if (data->reg_no != 0 && data->reg_no == no)
 					{
 						blue();
-						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
+						printf("\nReg. No    \tName          \tStream\tSem\tYear\tMarks\tGrade");
 						reset();
-						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
+						printsdata(data);
 						red();
 						printf("\nPress 1 to confirm:");
 						reset();
@@ -205,9 +205,9 @@ void modify_student_data(long int no)
 					if (data->reg_no != 0 && data->reg_no == no)
 					{
 						blue();
-						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
 						reset();
-						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
+						printf("\nReg. No    \tName          \tStream\tSem\tYear\tMarks\tGrade");
+						printsdata(data);
 						red();
 						printf("\nPress 1 to confirm:");
 						reset();
