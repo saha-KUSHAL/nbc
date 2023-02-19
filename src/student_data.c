@@ -72,59 +72,41 @@ void create_data() // function to store student marks by stream and semester
 		ch = getc(stdin);
 	}
 }
-
-void search_student_data(long int no)
-{
+void printsdata(student_data *data){
+	printf("\n%ld\t%s\t%s\t%s\t%d\t%d\t%c",data->reg_no,data->name,data->stream,data->sem,data->year,data->marks,data->grade);
+}		
+void search_student_data(long int no){
 	FILE *fp;
-	int ch = 0;
-	if (mt_file("files/streamlist.txt"))
-	{
-		printf("\nError or File not available.");
-	}
-	else
-	{
-		char fname[10];
-		fp = fopen("files/streamlist.txt", "r");
-		rewind(fp);
-		fread(fname, 10, 1, fp);
-		while (!feof(fp) && ch == 0)
-		{
-			if (mt_file(fname))
-				fread(fname, 10, 1, fp);
-			else
-			{
-				char path[30]="files/";
-				add_path(path,fname);
-				FILE *fp2 = fopen(path, "r");
-				student_data *data = (student_data *)malloc(sizeof(student_data));
-				rewind(fp2);
-				fread(data, sizeof(student_data), 1, fp2);
-				while (!feof(fp2) && ch == 0)
-				{
-					if (data->reg_no != 0 && data->reg_no == no)
-					{
-						blue();
-						printf("\nReg.no      Name      Stream      Semester     Year    Total Marks    Grade");
-						reset();
-						printf("\n%ld    %s    %s    %s  %d    %d %c", data->reg_no, data->name, data->stream, data->sem, data->year, data->marks, data->grade);
-						red();
-						printf("\nPress 1 to go back:");
-						reset();
-						while((getchar())!='\n');
-						scanf("%d", &ch);
-					}
-					else
-						fread(data, sizeof(student_data), 1, fp2);
-				}
-				fclose(fp2);
-				free(data);
+	char stm[10];
+	int ch=0;
+	fp = fopen("files/streamlist.txt", "r");
+	rewind(fp);
+	fread(stm, 10, 1, fp);
+	while (!feof(fp) && ch == 0){
+		char path[30]="files/";
+		add_path(path,stm);
+		FILE *fp2 = fopen(path, "r");
+		student_data *data = (student_data *)malloc(sizeof(student_data));
+		rewind(fp2);
+		fread(data, sizeof(student_data), 1, fp2);
+		while (!feof(fp2) && ch == 0)
+		{	if (data->reg_no != 0 && data->reg_no == no){
+				green();
+				printf("\nReg. No    \tName          \tStream\tSem\tYear\tMarks\tGrade");
+				reset();
+				printsdata(data);
+				ch=1;
 			}
-			fread(fname, 10, 1, fp);
+			else
+				fread(data, sizeof(student_data), 1, fp2);
 		}
-		if (ch == 0)
-			printf("\nData not available!");
-		fclose(fp);
+		fclose(fp2);
+		free(data);
+		fread(stm, 10, 1, fp);
 	}
+	if (ch == 0)
+		printf("\nData not available!");
+	fclose(fp);
 }
 void delete_student_data(long int no)
 {
@@ -327,7 +309,7 @@ void modify_student_data(long int no)
 				fclose(fp2);
 				free(data);
 			}
-			fread(fname, 10, 1, fp);
+			fread(fname, 30, 1, fp);
 		}
 		if (ch == 0)
 			printf("\nData not available!\n");

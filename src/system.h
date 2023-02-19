@@ -76,4 +76,5 @@ void add_request();
 void view_request();
 void add_path(char [],char []);
 void add_stream(char []);
+void printsdata(student_data *);
 #endif
