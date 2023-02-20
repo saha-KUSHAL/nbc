@@ -1,7 +1,7 @@
 #include "system.h"
 void manage_data() // manage data from ADMIN
 {
-    int ch = 4;
+    short int ch = 4;
     cyan();
     c_printf("--MANAGE DATA--");
     blue();
@@ -10,7 +10,7 @@ void manage_data() // manage data from ADMIN
     printf("\n--------\t\t\t-----------\t\t\t---------");
     reset();
     printf("\n>");
-    scanf("%d", &ch);
+    scanf("%hd", &ch);
     system(CLEAR);
     switch (ch)
     {
@@ -26,11 +26,11 @@ void manage_data() // manage data from ADMIN
             printf("\n|(1)Edit|\t\t\t|(2)Delete|\t\t\t|(0)Go Back|");
             printf("\n--------\t\t\t-----------\t\t\t---------");
             reset();
-            short int ch;
+            short int ch1;
             printf("\n>");
-            scanf("%hd",&ch);
+            scanf("%hd",&ch1);
             while((getchar())!='\n');
-            switch(ch){
+            switch(ch1){
                 case 1:{
                     long int regno;
                     system(CLEAR);
@@ -51,8 +51,9 @@ void manage_data() // manage data from ADMIN
                     printf("\nEnter the reg no:");
                     reset();
                     scanf("%ld",&regno);
-                    while((getchar())!='\n');
                     delete_student_data(regno);
+                    while((getchar())!='\n');
+                    getchar();
                 }
                 break;
                 case 0: break;

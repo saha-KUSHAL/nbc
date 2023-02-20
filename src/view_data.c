@@ -83,7 +83,6 @@ void stream() // displays a perticuler stream data
             while ((getchar()) != '\n');
             scanf("%s",stmin); // input from the user
             add_path(path,stmin);
-            printf("\n%s",path);
             fp=fopen(path,"r");
             if(fp==NULL)
                 printf("\nWrong Filename");
@@ -94,7 +93,7 @@ void stream() // displays a perticuler stream data
                 blue();
                 printf("\nReg no    Name    Stream    Sem    Marks    Grade    Year");
                 reset();
-                while(!feof(fp)){
+                while(!feof(fp) && data->reg_no != 0){
                     printsdata(data);
                     fread(data,sizeof(student_data),1,fp);
                 }
