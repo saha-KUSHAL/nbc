@@ -19,6 +19,8 @@ void view_data()
         {
         case 1:
             stream(); // view_data.c
+            while((getchar())!= '\n');//clearing the buffer
+            getchar();//for holding the screen
             break;
         case 2:{
             char ex;
@@ -53,7 +55,7 @@ void stream() // displays a perticuler stream data
 {
     FILE *fp;
     char ex;
-    if (mt_file("files/streamlist.txt")){
+    if (mt_file("files/streamlist.txt")){//checking if there is any stream availble or not
         system(CLEAR);
         red();
         c_printf("No Data Available");
@@ -68,21 +70,19 @@ void stream() // displays a perticuler stream data
     {
         char path[30]="files/",stream[10],stmin[10];
         fp = fopen("files/streamlist.txt", "r");
-        while (1){
             printf("\n\nStream List:");
             printf("\n-----------------");
             rewind(fp);
-
             fread(stream, 10, 1, fp);
-            while (!feof(fp)){//displaing all the availabel streams
+            while (!feof(fp)){      //displaing all the available streams
                 printf("\n%s",stream);
                 fread(stream,10,1,fp);
             }
             fclose(fp);
             printf("\n>");
-            while ((getchar()) != '\n');
-            scanf("%s",stmin); // input from the user
-            add_path(path,stmin);
+            while ((getchar()) != '\n');        //clearing the buffer
+            scanf("%s",stmin);      // input from the user
+            add_path(path,stmin);    //creating a path string using stream, ex- files/stream.dat from "stream"
             fp=fopen(path,"r");
             if(fp==NULL)
                 printf("\nWrong Filename");
@@ -91,21 +91,15 @@ void stream() // displays a perticuler stream data
                 rewind(fp);
                 fread(data,sizeof(student_data),1,fp);
                 blue();
-                printf("\nReg no    Name    Stream    Sem    Marks    Grade    Year");
+				printf("\nReg. No    \tName          \tStream\tSem\tYear\tMarks\tGrade");
                 reset();
-                while(!feof(fp) && data->reg_no != 0){
-                    printsdata(data);
+                while(!feof(fp)){                           //printing the whole data except reg no == 0 as
+                    if(data->reg_no!= 0)                    //they are treated as deleted logs
+                        printsdata(data);                       
                     fread(data,sizeof(student_data),1,fp);
                 }
                 free(data);
             }
-            printf("\n\nDo you want to view again\?(Y/N)");
-            char sel;
-            while ((getchar()) != '\n');
-            scanf("%c",&sel);
-            if((toupper(sel))=='N')
-                break;
-        }
         fclose(fp);
     }
 }

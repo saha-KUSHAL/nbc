@@ -72,7 +72,7 @@ void create_data() // function to store student marks by stream and semester
 	}
 }
 void printsdata(student_data *data){
-	printf("\n%ld\t%s\t%s\t%s\t%d\t%d\t%c",data->reg_no,data->name,data->stream,data->sem,data->year,data->marks,data->grade);
+	printf("\n%ld\t%s\t%s\t%s\t%d\t%d\t%c\n",data->reg_no,data->name,data->stream,data->sem,data->year,data->marks,data->grade);
 }		
 void search_student_data(long int no){
 	FILE *fp;
