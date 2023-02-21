@@ -28,7 +28,7 @@ void admin()
       manage_data();//manage_data.c
       break;
     case 3:
-      printf("\nSettings Module not found");
+      printf("\nSettings Module not found\n");
       break;
     case 0:
       key=fail;
