@@ -41,6 +41,7 @@ void manage_data() // manage data from ADMIN
                     scanf("%ld",&regno);
                     while((getchar())!='\n');
                     modify_student_data(regno);//need to modify the code
+                    getchar();
                 }
                 break;
                 case 2:{

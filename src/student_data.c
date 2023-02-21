@@ -3,6 +3,7 @@
 void create_data() // function to store student marks by stream and semester
 {
 	short int sub[10], n, i;
+	int mark = 0;
 	char ch = 'Y';
 	FILE *fp;
 	student_data *data = (student_data *)malloc(sizeof(student_data));
@@ -28,7 +29,6 @@ void create_data() // function to store student marks by stream and semester
 		printf("Enter Admission Year:");
 		while ((getchar()) != '\n');
 		scanf("%d", &data->year);
-		int mark = 0;
 		printf("How many written subjects?");
 		while ((getchar()) != '\n');
 		scanf("%hd", &n);
@@ -59,7 +59,6 @@ void create_data() // function to store student marks by stream and semester
 
 		add_stream(data->stream);
 		add_path(path,data->stream);
-		printf("\n%s",path);
 		if(mt_file(path))
 			fp=fopen(path,"w");
 		else
@@ -171,118 +170,97 @@ void modify_student_data(long int no){
 		char path[30]="files/";
 		add_path(path,stm);
 		FILE *fp2 = fopen(path, "r+");
-		student_data *data = (student_data *)malloc(sizeof(student_data));
-		rewind(fp2);
-		fread(data, sizeof(student_data), 1, fp2);
-		while (!feof(fp2) && ch == 0)
-		{	if (data->reg_no != 0 && data->reg_no == no){
-				blue();
-				printf("\nReg. No    \tName          \tStream\tSem\tYear\tMarks\tGrade");
-				reset();
-				printsdata(data);
-				red();
-				printf("\nPress 1 to confirm:");
-				reset();
-				scanf("%d", &ch);
-				if (ch == 1)
-				{
-					int n=1;
-					while (n!=0)
-					{
-						printf("\nEnter which data you want to modify");
-						blue();
-						printf("\n1.Name  2.Stream  3.Semester  4.Year  5.Enter marks");
-						red();
-						printf("\nEnter 0 to go back.");
-						reset();
-						while ((getchar()) != '\n');
-						scanf("%d", &n);
-						switch (n)
-						{
-						case 1:
-							printf("Enter Student Name:");
-							while ((getchar()) != '\n');
-							scanf("%49[^\n]", data->name);
+		if(fp2 != NULL){
+			student_data *data = (student_data *)malloc(sizeof(student_data));
+			rewind(fp2);
+			fread(data, sizeof(student_data), 1, fp2);
+			while (!feof(fp2) && ch == 0)
+			{	
+				if (data->reg_no != 0 && data->reg_no == no){
+					blue();
+					printf("\nReg. No    \tName          \tStream\tSem\tYear\tMarks\tGrade");
+					reset();
+					printsdata(data);
+					red();
+					printf("\nPress 1 to confirm:");
+					reset();
+					scanf("%d", &ch);
+					if (ch == 1){
+						short int sub[10], n, i,ch;
+						int mark =0;
+						printf("\nWhich Data you want to modify?");
+						printf("\n1:Name\t2:Stream\t3:Sem\t4:Year\t5:Marks");
+						printf("\n>");
+						scanf("%hd",&ch);
+					    while ((getchar()) != '\n');
+						switch(ch){
+							case 1:
+								printf("\nEnter name:");
+								scanf("%49[^\n]",data->name);
 							break;
-						case 2:
-							printf("Enter Student Stream:");
-							while ((getchar()) != '\n');
-							scanf("%s", data->stream);
+							case 2:
+								printf("\nEnter Stream:");
+								scanf("%s",data->stream);
 							break;
-						case 3:
-							printf("Enter Student Semseter:");
-							while ((getchar()) != '\n');
-							scanf("%s", data->sem);
+							case 3:
+								printf("\nEnter Sem:");
+								scanf("%s",data->sem);
 							break;
-						case 4:
-							printf("Enter Student Year:");
-							while ((getchar()) != '\n');
-							scanf("%d", &data->year);
+							case 4:
+								printf("Enter Year:");
+								scanf("%d",&data->year);
 							break;
-						case 5:
-						{
-							short int mark = 0,i,n,sub[10];
-							printf("How many written subjects?");
-							while ((getchar()) != '\n');
-							scanf("%hd", &n);
-							for (i = 0; i < n; i++)
-							{
-								printf("Enter marks of subject %d:", i + 1);
+							case 5:
+								printf("How many written subjects?");
 								while ((getchar()) != '\n');
-								scanf("%hd", &sub[i]);
-							}
-							for (i = 0; i < n; i++)
-								mark += sub[i];
-							data->marks = mark;
-							int tmarks = (mark / n);
-							data->marks = mark;
-							if (tmarks >= 90)
-								data->grade = 'O';
-							else if (tmarks < 90 && tmarks >= 80)
-								data->grade = 'E';
-							else if (tmarks < 80 && tmarks >= 70)
-								data->grade = 'A';
-							else if (tmarks < 70 && tmarks >= 60)
-								data->grade = 'B';
-							else if (tmarks < 60 && tmarks >= 50)
-								data->grade = 'C';
-							else if (tmarks < 50 && tmarks >= 40)
-								data->grade = 'D';
-							else
-								data->grade = 'F';
-						}
-						break;
-						case 0:
+								scanf("%hd", &n);
+								for (i = 0; i < n; i++)
+								{
+									printf("Enter marks of subject %d:",i + 1);
+									while ((getchar()) != '\n');
+									scanf("%hd", &sub[i]);
+								}
+								for (i = 0; i < n; i++)
+									mark += sub[i];
+								data->marks = mark;
+								int tmarks = (mark / n);
+								if (tmarks >= 90)
+									data->grade = 'O';
+								else if (tmarks < 90 && tmarks >= 80)
+									data->grade = 'E';
+								else if (tmarks < 80 && tmarks >= 70)
+									data->grade = 'A';
+								else if (tmarks < 70 && tmarks >= 60)
+									data->grade = 'B';
+								else if (tmarks < 60 && tmarks >= 50)
+									data->grade = 'C';
+								else if (tmarks < 50 && tmarks >= 40)
+									data->grade = 'D';
+								else
+									data->grade = 'F';
 							break;
-						default:
-						{
-							system(CLEAR);
-							red();
-							printf("Wrong input!\n");
-							reset();
+							dafault:
+									printf("\nChoose an Correct Option\v0 For exit");
 						}
-						}
-						system(CLEAR);
+						fseek(fp2, -(sizeof(student_data)), SEEK_CUR);
+						fwrite(data, sizeof(student_data), 1, fp2);
 						green();
-						printf("\nSaved\n");
+						printf("\nData Modified sucessfully.\n");
 						reset();
 					}
-					fseek(fp2, -(sizeof(student_data)), SEEK_CUR);
-					fwrite(data, sizeof(student_data), 1, fp2);
-					green();
-					printf("\nData Modified sucessfully.\n");
-					reset();
+					ch = 1;
 				}
-				ch = 1;
+				else
+					fread(data, sizeof(student_data), 1, fp2);
 			}
-			else
-				fread(data, sizeof(student_data), 1, fp2);
+			free(data);
 		}
+		else
+			printf("File Error!");
 		fclose(fp2);
-		free(data);
+		fread(stm, 10, 1, fp);
 	}
-	fread(stm,10, 1, fp);
-	if (ch == 0)
-		printf("\nData not available!\n");
 	fclose(fp);
+	if (ch == 0)
+		printf("\nData not available!");
 }
