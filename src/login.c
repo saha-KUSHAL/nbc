@@ -27,9 +27,10 @@ void create_login()
         free(data);
         fclose(fp);
     }
-    else
-    red();
+    else{
+        red();
         printf("\nError, cannot create file\n");
+    }
     reset();
 }
 

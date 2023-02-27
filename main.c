@@ -31,6 +31,10 @@ int main()
             break;
         case 0:
             exit(0);
+        default: 
+            red();
+            printf("\nWrong Input !");
+            reset();
         }
     }
     return (0);

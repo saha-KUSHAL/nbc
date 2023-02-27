@@ -32,6 +32,11 @@ void admin()
       break;
     case 0:
       key=fail;
+      break;
+    default : 
+        red();
+        printf("\nWrong Input");
+        reset();
     }
   }
   system(CLEAR);
