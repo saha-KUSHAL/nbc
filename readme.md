@@ -5,6 +5,14 @@ Our main goal is to gather some experience in software development and teamwork.
 
 You can contribute to this project after we publish this repo to public.
 
+# Screenshots
+![Screenshot from 2023-02-27 23-21-18](https://user-images.githubusercontent.com/99195543/221643971-f7c355c4-6702-47de-8c2a-ee8a5e044555.png)
+##
+![Screenshot from 2023-02-27 23-21-42](https://user-images.githubusercontent.com/99195543/221643995-cf1035ed-1b0e-4aaf-bec6-3136bdc7b813.png)
+##
+![Screenshot from 2023-02-27 23-21-54](https://user-images.githubusercontent.com/99195543/221644008-3c522ba3-c8e4-42f7-bca6-3d67ebe35aa4.png)
+
+
 ## For Linux:
 
 ### Run in terminal: 
