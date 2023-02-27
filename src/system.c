@@ -112,11 +112,11 @@ void add_stream(char stream[]){
         fclose(fp);
     }
 }
-int input(int uplimit){
-    int input;
-    ffflush(stdin);
-    if(input>=0 && input <=uplimit)
-        return input;
-    else
-        return (-1);
-}
+// int input(int uplimit){
+//     int input;
+//     ffflush(stdin);
+//     if(input>=0 && input <=uplimit)
+//         return input;
+//     else
+//         return (-1);
+// }
