@@ -62,40 +62,42 @@ test login()
         while (toupper(ch) != 'N')
         {
             int flag = 0;
+            short int n = 1;
             printf("\nEnter User Name:");
             fflush(stdin);
             scanf("%s", input->id);
-            printf("Enter Password:");
-            fflush(stdin);
-            scanf("%s", input->password);
+            
             rewind(fp);
             fread(data, sizeof(details), 1, fp);
 
             while (!feof(fp) && toupper(ch) != 'N')
             {
-                if (strcmp(input->id, data->id) == 0 && toupper(ch) != 'N')
-                {
+                if (strcmp(input->id, data->id) == 0 && toupper(ch) != 'N'){
                     flag = 1;
-                    if (strcmp(input->password, data->password) == 0)
-                    {
-                        system(CLEAR);
-                        ch = 'Y';
-                        free(input);
-                        free(data);
-                        fclose(fp);
-                        return pass;
+                    while(n == 1){
+                        printf("Enter Password:");
+                        fflush(stdin);
+                        scanf("%s", input->password);
+                        if (strcmp(input->password, data->password) == 0){
+                            system(CLEAR);
+                            ch = 'Y';
+                            free(input);
+                            free(data);
+                            fclose(fp);
+                            return pass;
+                        }
+                        else{
+                            red();
+                            printf("\nPassword didn't match.");
+                            blue();
+                            printf("\nPress 1 to retry.");
+                            reset();
+                            printf("\n>");
+                            scanf("%hd",&n);
+                            fflush(stdin);
+                        }
                     }
-                    else
-                    {
-                        red();
-                        printf("\nPassword didn't match.");
-                        blue();
-                        printf("\nWant to retry ? (Y/n)");
-                        reset();
-                        while ((getchar()) != '\n');
-                        scanf("%c", &ch);
-                        break;
-                    }
+                    return fail;
                 }
                 else
                     fread(data, sizeof(details), 1, fp);
