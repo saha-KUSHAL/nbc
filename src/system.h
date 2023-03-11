@@ -40,6 +40,22 @@ typedef struct student_data
     int marks;
     char grade;
 } student_data;
+typedef struct student_personal_details{
+    long int reg_no;
+    char name[50],f_name[50],m_name[50];
+    struct address{
+        char vill[30],po[30],ps[30],dist[20],state[20];
+        int pin;
+    }
+}std_per_det;
+typedef struct student_edu_details{
+    char course[10],inst[30],board[10],start_date[9],end_date[9];
+    int marks;
+    float persntg;
+}std_edu_det;
+typedef struct student_scholership_data{
+    char schlr_name[100],auth[100],date[9],
+}
 
 typedef struct request_data
 {
