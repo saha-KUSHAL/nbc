@@ -45,12 +45,10 @@ test login()
         green();
         printf("\nPress 1 to create an admin account.\nPress any key to go back.\n>");
         reset();
-        scanf("%d", &n);
         fflush(stdin);
-        if (n == 1)
+        scanf("%d", &n);
+        if(n==1)
             create_login();
-        else
-            return fail; // have to chnage this.
     }
     else
     {

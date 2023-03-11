@@ -65,12 +65,8 @@ int mt_file(char s[]) // checks if the file is empty or not
     {
         FILE *fp;
         fp=fopen(s, "r");
-        rewind(fp);
-        while (!feof(fp))
-        {
-            fgetc(fp);
-            size++;
-        }
+        fseek(fp,0,SEEK_END);
+        size = ftell(fp);
         rewind(fp);//to avoid mistake seek the file pointer to the start
         fclose(fp);
     }

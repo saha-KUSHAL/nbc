@@ -2,6 +2,7 @@
 int main()
 {
     int ch;
+    system(CLEAR);
     logo();
     blue();
     c_printf("Contributors:- Kushal Saha(Lead)  Shreyangshu Saha  Subrata Mondal  Indadul Haque");
