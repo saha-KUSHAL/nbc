@@ -30,37 +30,29 @@ typedef struct entered_data
     char password[10];
 } entered_data;
 
-typedef struct student_data
-{
-    long int reg_no;
-    char name[50];
-    char stream[5];
-    char sem[3];
-    int year;
-    int marks;
-    char grade;
-} student_data;
 typedef struct student_personal_details{
     long int reg_no;
-    char name[50],f_name[50],m_name[50];
+    char name[50],f_name[50],m_name[50],dob[11];
     struct address{
         char vill[30],po[30],ps[30],dist[20],state[20];
         int pin;
-    }
-}std_per_det;
+    }address;
+}std_per_data;
+
 typedef struct student_edu_details{
-    char course[10],inst[30],board[10],start_date[9],end_date[9];
+    char qualfn[10],inst[30],board[10],pass_date[11];
     int marks;
     float persntg;
-}std_edu_det;
+}std_edu_data;
+
 typedef struct student_scholership_data{
     char schlr_name[100],auth[100],date[9],
-}
+}std_schlr_data;
 
 typedef struct request_data
 {
-    char reqstr[1000];
     long int regno;
+    char reqstr[1000];
 }req_data;
 
 void logo();//logo
@@ -93,4 +85,5 @@ void view_request();
 void add_path(char [],char []);
 void add_stream(char []);
 void printsdata(student_data *);
+void clrbuf(); //clears the buffer memory
 #endif

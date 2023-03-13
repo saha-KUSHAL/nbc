@@ -108,11 +108,6 @@ void add_stream(char stream[]){
         fclose(fp);
     }
 }
-// int input(int uplimit){
-//     int input;
-//     ffflush(stdin);
-//     if(input>=0 && input <=uplimit)
-//         return input;
-//     else
-//         return (-1);
-// }
+void clrbuf(){
+    while((getchar()) != '\n');  //a dummy getchar() takes all the buffer contains untill it takes enter key
+}
