@@ -1,118 +1,111 @@
 #include "system.h"
 
-void create_login()
+void create_login(char typ[4])
 {
     FILE *fp;
-    if (mt_file("files/user.txt") == 1)
-        fp = fopen("files/user.bin", "w");
+    if(strcmp(typ,"std")==0){
+        log_crdls *data=(log_crdls *)malloc(sizeof(log_crdls));
+        if(fopen("files/user_std.bin","r")== NULL) //checking if the file has not been created
+            fp=fopen("files/user_std.bin","w"); //creating the file and opening in write mode
+        else
+            fp=fopen("files/user_std.bin","a"); //opening file in append mode
+        printf("\nEnter Name:");
+        fgets(data->name,sizeof(data->name),stdin);
+        printf("\nEnter Username:");
+        clrbuf();
+        fgets(data->id,sizeof(data->id),stdin);
+        printf("\nEnter Password:");
+        clrbuf();
+        fgets(data->password,sizeof(data->password),stdin);
+        
+    }
+    else if (strcmp(typ,"adm"==0)){
+
+    }
     else
-        fp = fopen("files/user.bin", "a");
-    if (fp != NULL)
-    {
-        details *data = (details *)malloc(sizeof(details)); // pointer variable of details structure
-        red();
-        c_printf("--Create Account--");
-        reset();
-        printf("\nEnter User Name:");
-        fflush(stdin);
-        scanf("%s", data->id);
-        printf("Create a Password:");
-        fflush(stdin);
-        scanf("%s", data->password);
-        fwrite(data, sizeof(details), 1, fp);
-        system(CLEAR);
-        green();
-        printf("Account Created Sucessfully !\n");
-        reset();
-        free(data);
-        fclose(fp);
-    }
-    else{
-        red();
-        printf("\nError, cannot create file\n");
-    }
-    reset();
+        printf("\nThere may be a typo in login func call.");
 }
 
-test login()
-{
-    if (mt_file("files/user.bin") == 1) // cheking if there is data or not;
-    {
-        int n;
-        red();
-        printf("\nNo Admin Found.");
-        reset();
-        green();
-        printf("\nPress 1 to create an admin account.\nPress any key to go back.\n>");
-        reset();
-        fflush(stdin);
-        scanf("%d", &n);
-        if(n==1)
-            create_login();
-    }
-    else
-    {
-        char ch = 'Y';
-        details *data = (details *)malloc(sizeof(details));
-        entered_data *input = (entered_data *)malloc(sizeof(entered_data));
-
-        FILE *fp = fopen("files/user.bin", "r");
-        while (toupper(ch) != 'N')
-        {
-            int flag = 0;
-            short int n = 1;
-            printf("\nEnter User Name:");
-            fflush(stdin);
-            scanf("%s", input->id);
-            
+test login(char typ[4]){
+    if((strcmp(typ,"adm"))==0){ //admin login ui
+        if(mt_file("files/user_admin.bin"))
+            create_login("adm");
+        else{
+            FILE *fp = fopen("files/user_admin.bin","r");
+            log_crdls *data_in=(log_crdls *)malloc(sizeof(log_crdls));
+            log_crdls *data_chk=(log_crdls *)malloc(sizeof(log_crdls));
+            printf("\nEnter Username:");
+            clrbuf();
+            fgets(data_in->id,sizeof(data_in->id),stdin);
+            fread(data_chk,sizeof(log_crdls),1,fp);
             rewind(fp);
-            fread(data, sizeof(details), 1, fp);
-
-            while (!feof(fp) && toupper(ch) != 'N')
-            {
-                if (strcmp(input->id, data->id) == 0 && toupper(ch) != 'N'){
-                    flag = 1;
-                    while(n == 1){
-                        printf("Enter Password:");
-                        fflush(stdin);
-                        scanf("%s", input->password);
-                        if (strcmp(input->password, data->password) == 0){
-                            system(CLEAR);
-                            ch = 'Y';
-                            free(input);
-                            free(data);
-                            fclose(fp);
+            while(!feof(fp)){
+                if(strcmp(data_chk->id,data_in->id)==0){
+                    while(1){
+                        printf("\nEnter Password:");
+                        clrbuf();
+                        fgets(data_chk->password,sizeof(data_chk->password),stdin);
+                        if(strcmp(data_chk->password,data_in->id)==0){
+                            free(data_chk);
+                            free(data_in);
                             return pass;
                         }
                         else{
+                            short int ch;
                             red();
-                            printf("\nPassword didn't match.");
-                            blue();
-                            printf("\nPress 1 to retry.");
+                            printf("\nWrong Password !");
+                            green();
+                            printf("\nPress 1 to Enter again.");
                             reset();
-                            printf("\n>");
-                            scanf("%hd",&n);
-                            fflush(stdin);
+                            if(ch != 1)
+                                break;
                         }
+                        free(data_chk);
+                        free(data_in);
+                        return fail;
                     }
-                    return fail;
                 }
                 else
-                    fread(data, sizeof(details), 1, fp);
-            }
-            if (flag == 0)
-            {
-                red();
-                printf("\nUser not Found.Press any key to Try again...\nPress 'N' to exit");
-                reset();
-                printf("\n>");
-                while ((getchar()) != '\n');
-                scanf("%c", &ch);
+                    fread(data_chk,sizeof(log_crdls),1,fp);
             }
         }
-        free(input);
-        free(data);
-        fclose(fp);
     }
-    return fail;
+    if((strcmp(typ,"std"))==0){ // student login ui
+if(mt_file("files/user_std.bin"))
+            create_login("std");
+        else{
+            FILE *fp = fopen("files/user_std.bin","r");
+            log_crdls *data_in=(log_crdls *)malloc(sizeof(log_crdls));
+            log_crdls *data_chk=(log_crdls *)malloc(sizeof(log_crdls));
+            printf("\nEnter Username:");
+            clrbuf();
+            fgets(data_in->id,sizeof(data_in->id),stdin);
+            fread(data_chk,sizeof(log_crdls),1,fp);
+            rewind(fp);
+            while(!feof(fp)){
+                if(strcmp(data_chk->id,data_in->id)==0){
+                    while(1){
+                        printf("\nEnter Password:");
+                        clrbuf();
+                        fgets(data_chk->password,sizeof(data_chk->password),stdin);
+                        if(strcmp(data_chk->password,data_in->id)==0)
+                            return pass;
+                        else{
+                            short int ch;
+                            red();
+                            printf("\nWrong Password !");
+                            green();
+                            printf("\nPress 1 to Enter again.");
+                            reset();
+                            if(ch != 1)
+                                break;
+                        }
+                        return fail;
+                    }
+                }
+                else
+                    fread(data_chk,sizeof(log_crdls),1,fp);
+            }
+        }
+    }
 }

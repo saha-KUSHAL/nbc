@@ -2,9 +2,38 @@
 void student()
 {
 	short int ch;
-	test key= pass;
-	while(key)
-	{
+	system(CLEAR);
+	green();
+		printf("\n\t\t-----------------\t\t------------");
+		printf("\n\t\t|(1)Sign In|\t\t|(2)Sign Up|");
+		printf("\n\t\t-----------------\t\t------------");
+		reset();
+	clrbuf();
+	while(1){
+		printf("\n>");
+		scanf("%hd",&ch);
+		if(ch==1){
+			test key= login("std");
+			if(key == pass)
+				std_pnl;
+			break;
+		}
+		else if(ch ==2){
+			create_login("std");
+			break;
+		}
+		else{
+			red();
+			printf("\nEnter Right Option.");
+			reset();
+		}
+	}
+}
+//main student UX, need to work on...
+void std_pnl(){
+	short int key=1;
+	while(key){
+		short int ch;
 		system(CLEAR);
 		purple();
 		c_printf("--Student Panel--");
@@ -36,12 +65,11 @@ void student()
 				system(CLEAR);
 				add_request();
 				break;
-			case 0: 
-				key=fail;
+			case 0:
+				key=0;
 				break;
 			default: 
 				printf("\nWrong input");
 		}
 	}
-	system(CLEAR);
 }

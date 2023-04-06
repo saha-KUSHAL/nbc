@@ -2,7 +2,7 @@
 
 void admin()
 {
-  test key = login();
+  test key = login("adm");
   while (key)
   {
     int ch;

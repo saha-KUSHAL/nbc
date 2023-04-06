@@ -1,8 +1,10 @@
 #include "system.h"
 
-//function to add personal details of student
-void add_std_per_data(/*add parameters*/){
-	std_per_data *data = (std_per_data *)malloc(sizeof(std_per_data)); //allocating memeory
+void add_std_data(char stream[]){
+	std_per_data *data = (std_per_data *)malloc(sizeof(std_per_data));
+	std_edu_data * edu_data=(std_edu_data *)malloc(sizeof(std_edu_data));
+}
+int add_std_per_data(std_per_data * data){
 	green();
 	c_printf("--Student Personal Data--");
 	reset();
@@ -38,13 +40,14 @@ void add_std_per_data(/*add parameters*/){
 	printf("\nPin:");
 	clrbuf();
 	scanf("%d",&data->address.pin);
-	//how to store data? need a key
-	free(data);
+	printf("\nEnter Adhar No:");
+	clrbuf();
+	fgets(data->adhar,sizeof(data->adhar),stdin);
+	return 1;
 }
 
 //function to add educational details
-void add_std_edu_data(/*add parameters*/){
-	std_edu_data * data=(std_edu_data *)malloc(sizeof(std_edu_data));
+int add_std_edu_data(std_edu_data * data){
 	green();
 	c_printf("--Educational Details--");
 	blue();
@@ -64,5 +67,18 @@ void add_std_edu_data(/*add parameters*/){
 	printf("\nEnter Percentage:");
 	clrbuf();
 	scanf("%2.2f",&data->persntg);
-	free(data);
+	return 1;
+}
+int add_std_schlr_data(std_schlr_data * data){
+	c_printf("--Student Scholarship Data--");
+	printf("\nEnter Name:");
+	clrbuf();
+	fgets(data->schlr_name,sizeof(data->schlr_name),stdin);
+	printf("\nEnter Authority Name:");
+	clrbuf();
+	fgets(data->auth,sizeof(data->auth),stdin);
+	printf("\nEnter Date in DD/MM/YYY:");
+	clrbuf();
+	fgets(data->date,sizeof(data->date),stdin);
+	return 1;
 }
