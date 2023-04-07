@@ -103,3 +103,34 @@ void stream() // displays a perticuler stream data
         fclose(fp);
     }
 }
+int pending(){
+    FILE * fp = fopen("files/pending.dat","r");
+    std_data * det;
+    char input[50];
+    if(fp == NULL)
+        printf("\nFile can't be opened.");
+        return 0;
+    c_printf("--Pending Students--");
+    /*Reading data from the file and printing name and ADHAR card only.
+    User can input name or ADHAR which is the key for printing whole stdudent data.*/
+    rewind(fp);
+    fread(det,sizeof(std_data),1,fp);
+    while(!feof(fp)){
+        printf("\n%s%s",det->data->name,det->data->adhar);
+        fread(det,sizeof(std_data),1,fp);
+    }
+    printf("Enter Name or Adhar:");
+    clrbuf();
+    fgets(input,sizeof(input),stdin);
+    rewind(fp);
+    fread(det,sizeof(std_data),1,fp);
+    //Binary search implementaion(WIP)
+    while(!foef(fp)){
+        if((strcmp(input,det->data->name) > 0 )|| (strcmp(input,det->data->adhar)> 0))
+            //logic here
+        if((strcmp(input,det->data->name) < 0 )|| (strcmp(input,det->data->adhar)< 0))
+            //logic here
+        if((strcmp(input,det->data->name) == 0 )|| (strcmp(input,det->data->adhar)== 0))
+            //logic here
+    }
+}
