@@ -27,7 +27,7 @@ You can contribute to this project after we publish this repo to public.
 	1.Make sure you have Standard GCC Compiler (incase you have llvm change the make file)
 	2.Make sure you have Makefile of CMake installed.
 	3.Run in cmd(for Win) Terminal(Linux or OSX) : 
-		make
+		make win
 	4. Done now you can run via "nbc" or by simple double click the exe
 
 ## Reporting Bugs;
