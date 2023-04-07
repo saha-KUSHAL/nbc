@@ -1,8 +1,26 @@
 #include "system.h"
 
-void add_std_data(char stream[]){
+int add_std_data(char stream[]){
+	FILE *fp;
+	std_data * det;
+	if(fopen("files/pending.dat","r")==NULL)
+		fp=fopen("files/pending.data","w");
+	else
+		fp=fopen("files/pending.data","w");
 	std_per_data *data = (std_per_data *)malloc(sizeof(std_per_data));
 	std_edu_data * edu_data=(std_edu_data *)malloc(sizeof(std_edu_data));
+	add_std_per_data(data);
+	add_std_edu_data(edu_data);
+	/* intially planning to write all this data via another structure which
+	contains pointer to those two structures*/
+	det->data = &data;
+	det->edu_data = &edu_data;
+	det->sch_data = NULL;
+	fwrite(det,sizeof(std_data),1,fp);
+	free(data);
+	free(edu_data);
+	fclose(fp);
+	return 1;
 }
 int add_std_per_data(std_per_data * data){
 	green();

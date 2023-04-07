@@ -41,8 +41,9 @@ typedef struct student_edu_details{
 } std_edu_data;
 
 typedef struct student_scholership_data{
-    char schlr_name[100],auth[100],date[9],
-}std_schlr_data;
+    char schlr_name[100],auth[100],date[9];
+} std_schlr_data;
+
 typedef struct bca{
     struct sem_1{
         int sub1,sub2,sub3,sub4;
@@ -53,6 +54,11 @@ typedef struct request_data
     long int regno;
     char reqstr[1000];
 }req_data;
+typedef struct std_data{
+    std_per_data * data;
+    std_edu_data * edu_data;
+    std_schlr_data * sch_data;
+}std_data;
 
 void logo();//logo
 void black(); // text colors
@@ -83,7 +89,7 @@ void add_request();
 void view_request();
 void add_path(char [],char []);
 void add_stream(char []);
-void printsdata(student_data *);
+void printsdata(std_data *);
 void clrbuf(); //clears the buffer memory
 int add_std_edu_data(std_edu_data *);
 #endif
