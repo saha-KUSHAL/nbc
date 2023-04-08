@@ -111,3 +111,11 @@ void add_stream(char stream[]){
 void clrbuf(){
     while((getchar()) != '\n');  //a dummy getchar() takes all the buffer contains untill it takes enter key
 }
+
+//Function take a file pointer and return the size of that file
+int fsizeof(FILE *fp){
+    int size=0;
+    fseek(fp,0,SEEK_END);   //takes the file cursor to the end
+    size = ftell(fp);       //ftell returns the cursor position in terms of the bytes
+    return size;
+}

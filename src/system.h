@@ -60,6 +60,7 @@ typedef struct std_data{
     std_schlr_data * sch_data;
 }std_data;
 
+
 void logo();//logo
 void black(); // text colors
 void red();
@@ -92,4 +93,5 @@ void add_stream(char []);
 void printsdata(std_data *);
 void clrbuf(); //clears the buffer memory
 int add_std_edu_data(std_edu_data *);
+int fsizeof(FILE *);
 #endif
