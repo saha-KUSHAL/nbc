@@ -55,6 +55,7 @@ void c_printf(char s[])
     int pad = (strlen(s) >= width) ? 0 : (width - strlen(s)) / 2;
     printf("%*.*s%s\n", pad, pad, " ", s);
 }
+/* WIll nuke this function later*/
 int mt_file(char s[]) // checks if the file is empty or not
 {
     long int size = 0;
@@ -118,4 +119,27 @@ int fsizeof(FILE *fp){
     fseek(fp,0,SEEK_END);   //takes the file cursor to the end
     size = ftell(fp);       //ftell returns the cursor position in terms of the bytes
     return size;
+}
+void bubblesort(FILE *fp){
+    char key[50];
+    int i,j,n;
+    std_data * det = (std_data *)malloc(sizeof(std_data));
+    std_data * det1 = (std_data *)malloc(sizeof(std_data));
+    std_data * temp = (std_data *)malloc(sizeof(std_data));
+    n=(fsizeof(fp)/sizeof(std_data));
+    rewind(fp);
+    for(i=0;i<n;i++){
+        for(j=0;j<n-i-1;j++){
+            fread(det,sizeof(std_data),1,fp);
+            fread(temp,sizeof(std_data),1,fp);
+            if(strcmp((det->data->adhar),(det1->data->adhar))==1){
+                temp=det1;
+                det1=det;
+                det=temp;
+            }
+        }
+    }
+    free(det);
+    free(det1);
+    free(temp);
 }
