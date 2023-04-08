@@ -19,7 +19,7 @@ void create_login(char typ[4])
         fgets(data->password,sizeof(data->password),stdin);
         
     }
-    else if (strcmp(typ,"adm"==0)){
+    else if (strcmp(typ,"adm")==0){
 
     }
     else

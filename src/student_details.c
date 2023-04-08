@@ -4,9 +4,9 @@ int add_std_data(char stream[]){
 	FILE *fp;
 	std_data * det;
 	if(fopen("files/pending.dat","r")==NULL)
-		fp=fopen("files/pending.data","w");
+		fp=fopen("files/pending.dat","w");
 	else
-		fp=fopen("files/pending.data","w");
+		fp=fopen("files/pending.dat","a");
 	std_per_data *data = (std_per_data *)malloc(sizeof(std_per_data));
 	std_edu_data * edu_data=(std_edu_data *)malloc(sizeof(std_edu_data));
 	add_std_per_data(data);
