@@ -20,7 +20,17 @@ void create_login(char typ[4])
         
     }
     else if (strcmp(typ,"adm")==0){
-
+      log_crdls *data=(log_crdls *)malloc(sizeof(log_crdls));
+      if(fopen("files/user_admin.bin","r")==NULL)
+        fp=fopen("files/user_admin.bin","w");
+      else
+        fp=fopen("files/user_admin.bin","a");
+      printf("Enter Username:");
+      clrbuf();
+      fgets(data->id,sizeof(data->id),stdin);
+      printf("Enter Password:");
+      clrbuf();
+      fgets(data->password,sizeof(data->password),stdin);
     }
     else
         printf("\nThere may be a typo in login func call.");
